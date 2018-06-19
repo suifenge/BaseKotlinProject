@@ -1,0 +1,15 @@
+ext {
+
+    minSdkVersion = 19
+    targetSdkVersion = 26
+    supportVersion = '27.0.2'
+
+    libs = [
+            design               : "com.android.support:design:$supportVersion",
+            SupportV7            : "com.android.support:appcompat-v7:$supportVersion",
+            SupportV4            : "com.android.support:support-v4:$supportVersion",
+            SupportRecyclerviewV7: "com.android.support:recyclerview-v7:$supportVersion",
+            SupportCardView      : "com.android.support:cardview-v7:$supportVersion",
+            SupportDesign        : "com.android.support:design:$supportVersion"
+    ]
+}
