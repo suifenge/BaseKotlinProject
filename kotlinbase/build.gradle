@@ -25,7 +25,12 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation lib.SupportV7
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api lib.SupportV7
+    api lib.SupportDesign
+    api lib.SupportV4
+    api lib.SupportRecyclerviewV7
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation lib.RxLifeCycle
+
 }
