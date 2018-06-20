@@ -1,12 +1,11 @@
 package com.suifeng.kotlin.baseproject
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
+import com.suifeng.kotlin.base.ui.activity.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity(
+        R.layout.activity_main
+) {
+    override fun init() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
     }
 }
