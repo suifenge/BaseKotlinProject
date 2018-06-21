@@ -1,3 +1,5 @@
+package com.suifeng.kotlin.base.extension
+
 import android.app.Activity
 import android.app.Dialog
 import android.app.DialogFragment

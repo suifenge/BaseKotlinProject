@@ -1,4 +1,4 @@
-package com.ssf.framework.main.ex
+package com.suifeng.kotlin.base.extension
 
 /**
  * @author admin
@@ -8,8 +8,11 @@ package com.ssf.framework.main.ex
 
 public interface IConfig{
     companion object {
+        //AutoLayout
         const val LAYOUT_LINEARLAYOUT = "LinearLayout"
         const val LAYOUT_FRAMELAYOUT = "FrameLayout"
         const val LAYOUT_RELATIVELAYOUT = "RelativeLayout"
+        //SharedPreference
+        const val SHARED_PREFERENCES_FILE_NAME = "Shared_Preferences_FILE_NAME"
     }
 }
