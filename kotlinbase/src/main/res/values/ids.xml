@@ -3,4 +3,8 @@
     <item type="id" name="toolbar" />
     <item type="id" name="statusbarutil_fake_status_bar_view" />
     <item type="id" name="statusbarutil_translucent_view" />
+    <!-- laoding -->
+    <item name="net_tv_message" type="id"/>
+    <!-- banner -->
+    <item name="cb_item_tag" type="id"/>
 </resources>

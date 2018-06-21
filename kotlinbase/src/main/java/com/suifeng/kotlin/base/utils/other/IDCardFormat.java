@@ -1,4 +1,4 @@
-package com.suifeng.kotlin.base.extension;
+package com.suifeng.kotlin.base.utils.other;
 
 
 import java.text.ParseException;

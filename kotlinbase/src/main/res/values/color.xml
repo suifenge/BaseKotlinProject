@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- APP主题颜色 -->
+    <color name="default_app_main_color">#8841e0</color>
+    <!-- 副主题颜色 -->
+    <color name="default_app_f_color">#d6a23e</color>
+    <!-- 加载中的动画 -->
+    <color name="triangle">#aa72d572</color>
+    <color name="circle">#aa738ffe</color>
+    <color name="rect">#aae84e40</color>
+    <color name="view_bg">#00000000</color>
+    <color name="shadow">#25808080</color>
+    <color name="chat_btn">#8ecb4f</color>
+    <color name="default_divider_color">#e5e5e5</color>
+    <color name="default_text_color">#999999</color>
+
+    <color name="white">#ffffff</color>
+    <!-- 弹出密码框需要的颜色 -->
+    <color name="gray_bg">#f0eff5</color>
+    <color name="gray_line">#ebebeb</color>
+    <color name="gray_btn">#EBEBEB</color>
+    <color name="psd_tv_black">#212121</color>
+</resources>

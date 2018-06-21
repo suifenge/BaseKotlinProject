@@ -1,6 +1,7 @@
 package com.suifeng.kotlin.base.extension
 
 import android.text.TextUtils.isEmpty
+import com.suifeng.kotlin.base.utils.other.IDCardFormat
 import java.text.NumberFormat
 import java.util.*
 import java.util.regex.Pattern

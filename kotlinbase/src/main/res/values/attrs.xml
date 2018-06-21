@@ -14,4 +14,11 @@
         <attr name="shadow_bottom" format="reference" />
     </declare-styleable>
     <attr name="SwipeBackLayoutStyle" format="reference" />
+
+    <!-- 密码框 -->
+    <declare-styleable name="PayPwdView">
+        <attr name="count" format="integer"/>
+        <attr name="pay_border_color" format="color"/>
+        <attr name="dot_color" format="color"/>
+    </declare-styleable>
 </resources>
