@@ -5,6 +5,7 @@ ext {
     compileSdkVersion = 26
     supportVersion = '27.0.2'
 
+    //当需要时直接从这里引入到base的build.gradle中
     libs = [
             SupportV7            : "com.android.support:appcompat-v7:$supportVersion",
             SupportV4            : "com.android.support:support-v4:$supportVersion",
@@ -31,8 +32,10 @@ ext {
             GlideTransformations : 'jp.wasabeef:glide-transformations:3.0.1',                        //Glide图片裁剪
             EventBus             : 'org.greenrobot:eventbus:3.1.1',
             SmartRefreshLayout   : 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1',
-            SmartRefreshHeader   : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1',             //特殊header要求可以添加引用
+            SmartRefreshHeader   : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1',            //特殊header要求可以添加引用
             BaseRecyclerViewAdapterHelper : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
-            ConvenientBanner     : 'com.bigkoo:ConvenientBanner:2.1.4'                              //轮播图
+            ConvenientBanner     : 'com.bigkoo:ConvenientBanner:2.1.4',                             //轮播图
+            AutoLayout           : 'com.zhy:autolayout:1.4.5',
+            GreenDao             : 'org.greenrobot:greendao:3.2.2'                                  //GreenDao数据库
     ]
 }

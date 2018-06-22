@@ -1,9 +1,12 @@
 package com.suifeng.kotlin.base.ui.activity
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
 import com.suifeng.kotlin.base.R
 import com.suifeng.kotlin.base.eventbus.EventCenter
+import com.suifeng.kotlin.base.extension.IConfig
 import com.suifeng.kotlin.base.swipback.SwipeBackActivity
 import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
@@ -12,6 +15,10 @@ import com.suifeng.kotlin.base.utils.netstatus.NetStateReceiver
 import com.suifeng.kotlin.base.utils.netstatus.NetUtils
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
 import com.trello.rxlifecycle2.android.ActivityEvent
+import com.zhy.autolayout.AutoFrameLayout
+import com.zhy.autolayout.AutoLinearLayout
+import com.zhy.autolayout.AutoRelativeLayout
+import com.zhy.autolayout.utils.AutoUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -133,6 +140,15 @@ abstract class BaseActivity(
                 SCALE        -> { overridePendingTransition(R.anim.scale_in, R.anim.scale_out) }
                 FADE         -> { overridePendingTransition(R.anim.fade_in, R.anim.fade_out) }
             }
+        }
+    }
+
+    override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View {
+        return when(name) {
+            IConfig.LAYOUT_FRAMELAYOUT      -> AutoFrameLayout(context, attrs)
+            IConfig.LAYOUT_LINEARLAYOUT     -> AutoLinearLayout(context, attrs)
+            IConfig.LAYOUT_RELATIVELAYOUT   -> AutoRelativeLayout(context, attrs)
+            else                -> return super.onCreateView(name, context, attrs)
         }
     }
 

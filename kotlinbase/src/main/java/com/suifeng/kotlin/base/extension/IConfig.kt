@@ -17,5 +17,7 @@ public interface IConfig{
         //dialog相关
         val PROGRESS_TAG = "PROGRESS_TAG"
         val HintDialog_TAG = "HintDialog_TAG"
+        //网络请求加载框
+        val NET_PROGRESS_TAG = "NET_PROGRESS_TAG"
     }
 }
