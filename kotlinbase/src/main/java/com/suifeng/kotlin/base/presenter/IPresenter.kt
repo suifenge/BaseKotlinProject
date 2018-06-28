@@ -5,4 +5,7 @@ package com.suifeng.kotlin.base.presenter
  * @data 2018/6/20
  * @describe
  */
-interface MvpView
+interface IPresenter<in V : IBaseView> {
+    fun attachView(mRootView: V)
+    fun detachView()
+}

@@ -8,7 +8,7 @@ import com.trello.rxlifecycle2.android.ActivityEvent
  * @data 2018/6/20
  * @describe
  */
-class BasePresenter<T : MvpView>(val provider: LifecycleProvider<ActivityEvent>) : Presenter<T> {
+class BasePresenter<T : IBaseView>(val provider: LifecycleProvider<ActivityEvent>) : IPresenter<T> {
 
     var mMvpView: T? = null
         private set
@@ -28,5 +28,5 @@ class BasePresenter<T : MvpView>(val provider: LifecycleProvider<ActivityEvent>)
         if(!isViewAttached) throw MvpViewNotAttachedException()
     }
 
-    class MvpViewNotAttachedException : RuntimeException("Please call Presenter.attachView(MvpView) before requesting data to the Presenter")
+    class MvpViewNotAttachedException : RuntimeException("Please call IPresenter.attachView(IBaseView) before requesting data to the IPresenter")
 }

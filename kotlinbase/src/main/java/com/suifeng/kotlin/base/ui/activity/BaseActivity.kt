@@ -91,7 +91,7 @@ abstract class BaseActivity(
                 onNetworkDisConnected()
             }
         }
-        NetStateReceiver.removeRegisterObserver(mNetChangeObserver)
+        NetStateReceiver.registerObserver(mNetChangeObserver)
     }
 
     private fun setClickViewEvent() {
