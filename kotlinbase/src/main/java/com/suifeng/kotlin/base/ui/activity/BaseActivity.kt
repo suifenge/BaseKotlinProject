@@ -143,12 +143,12 @@ abstract class BaseActivity(
         }
     }
 
-    override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View {
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
         return when(name) {
             IConfig.LAYOUT_FRAMELAYOUT      -> AutoFrameLayout(context, attrs)
             IConfig.LAYOUT_LINEARLAYOUT     -> AutoLinearLayout(context, attrs)
             IConfig.LAYOUT_RELATIVELAYOUT   -> AutoRelativeLayout(context, attrs)
-            else                -> return super.onCreateView(name, context, attrs)
+            else                            -> super.onCreateView(name, context, attrs)
         }
     }
 

@@ -8,4 +8,8 @@ class MainActivity : BaseActivity(
     override fun init() {
 
     }
+
+    override fun initStatusBar() {
+
+    }
 }
