@@ -12,6 +12,7 @@ ext {
             SupportRecyclerviewV7: "com.android.support:recyclerview-v7:$supportVersion",
             SupportCardView      : "com.android.support:cardview-v7:$supportVersion",
             SupportDesign        : "com.android.support:design:$supportVersion",
+            ConstraintLayout     : "com.android.support.constraint:constraint-layout:1.1.2",
             RxLifeCycle          : 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0',
             Retrofit             : 'com.squareup.retrofit2:retrofit:2.3.0',
             RetrofitAdapter      : 'com.squareup.retrofit2:adapter-rxjava2:2.3.0',

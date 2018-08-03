@@ -18,7 +18,6 @@ import com.trello.rxlifecycle2.android.ActivityEvent
 import com.zhy.autolayout.AutoFrameLayout
 import com.zhy.autolayout.AutoLinearLayout
 import com.zhy.autolayout.AutoRelativeLayout
-import com.zhy.autolayout.utils.AutoUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe

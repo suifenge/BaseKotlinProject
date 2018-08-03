@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: 'extension.gradle'
 
 def config = ext
@@ -51,4 +52,6 @@ dependencies {
     api lib.Toasty
     api lib.EventBus
     api lib.AutoLayout
+    api lib.Glide
+    kapt lib.GlideCompiler
 }

@@ -6,7 +6,7 @@ package com.suifeng.kotlin.base.extension
  * @describe
  */
 
-public interface IConfig{
+interface IConfig{
     companion object {
         //AutoLayout
         const val LAYOUT_LINEARLAYOUT = "LinearLayout"
