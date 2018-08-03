@@ -30,13 +30,18 @@ ext {
             ARouterCompiler      : 'com.alibaba:arouter-compiler:1.1.4',
             Glide                : 'com.github.bumptech.glide:glide:4.6.1',
             GlideCompiler        : 'com.github.bumptech.glide:compiler:4.6.1',                      //配置Glide全局属性
-            GlideTransformations : 'jp.wasabeef:glide-transformations:3.0.1',                        //Glide图片裁剪
+            GlideTransformations : 'jp.wasabeef:glide-transformations:3.0.1',                       //Glide图片裁剪
             EventBus             : 'org.greenrobot:eventbus:3.1.1',
             SmartRefreshLayout   : 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1',
             SmartRefreshHeader   : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1',            //特殊header要求可以添加引用
             BaseRecyclerViewAdapterHelper : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
             ConvenientBanner     : 'com.bigkoo:ConvenientBanner:2.1.4',                             //轮播图
             AutoLayout           : 'com.zhy:autolayout:1.4.5',
-            GreenDao             : 'org.greenrobot:greendao:3.2.2'                                  //GreenDao数据库
+            GreenDao             : 'org.greenrobot:greendao:3.2.2',                                 //GreenDao数据库
+            //mvvm
+            RxBindind            : 'com.jakewharton.rxbinding2:rxbinding:2.1.1',                    // RxBinding绑定数据
+            //RecyclerView的DataBinding套装
+            BindCollectionAdapter: "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0",
+            BindCollectionAdapterRecyclerView: "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0"
     ]
 }

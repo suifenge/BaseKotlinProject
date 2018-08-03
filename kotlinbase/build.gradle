@@ -16,7 +16,9 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
+    dataBinding {
+        enabled true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -54,4 +56,8 @@ dependencies {
     api lib.AutoLayout
     api lib.Glide
     kapt lib.GlideCompiler
+    //mvvm
+    api lib.RxBindind
+    api lib.BindCollectionAdapter
+    api lib.BindCollectionAdapterRecyclerView
 }
