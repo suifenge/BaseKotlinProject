@@ -94,6 +94,9 @@ abstract class BaseFragment(
         }
     }
 
+    override fun onClick(v: View) {
+    }
+
     override fun onDestroy() {
         if(isBindEventBusHere()) {
             EventBus.getDefault().unregister(mEventBusReceiver)
