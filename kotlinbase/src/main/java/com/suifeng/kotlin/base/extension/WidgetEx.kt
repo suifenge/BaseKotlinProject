@@ -1,6 +1,5 @@
 package com.suifeng.kotlin.base.extension
 
-import android.content.Context
 import android.graphics.Rect
 import android.text.Editable
 import android.text.InputType
@@ -8,13 +7,8 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import com.suifeng.kotlin.base.R
 import com.suifeng.kotlin.base.utils.other.SimpleTextWatcher
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import com.trello.rxlifecycle2.components.support.RxDialogFragment
-import com.trello.rxlifecycle2.components.support.RxFragment
 import com.zhy.autolayout.utils.AutoUtils
 
 /**

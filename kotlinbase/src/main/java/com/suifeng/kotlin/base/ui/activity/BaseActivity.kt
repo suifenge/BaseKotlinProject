@@ -14,6 +14,7 @@ import com.suifeng.kotlin.base.utils.netstatus.NetChangeObserver
 import com.suifeng.kotlin.base.utils.netstatus.NetStateReceiver
 import com.suifeng.kotlin.base.utils.netstatus.NetUtils
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
+import com.suifeng.kotlin.base.widget.auto.AutoConstraintLayout
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.zhy.autolayout.AutoFrameLayout
 import com.zhy.autolayout.AutoLinearLayout
@@ -147,6 +148,7 @@ abstract class BaseActivity(
             IConfig.LAYOUT_FRAMELAYOUT      -> AutoFrameLayout(context, attrs)
             IConfig.LAYOUT_LINEARLAYOUT     -> AutoLinearLayout(context, attrs)
             IConfig.LAYOUT_RELATIVELAYOUT   -> AutoRelativeLayout(context, attrs)
+            IConfig.LAYOUT_CONSTRAINTLAYOUT -> AutoConstraintLayout(context, attrs)
             else                            -> super.onCreateView(name, context, attrs)
         }
     }
