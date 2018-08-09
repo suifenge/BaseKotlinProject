@@ -2,8 +2,8 @@ ext {
 
     minSdkVersion = 16
     targetSdkVersion = 26
-    compileSdkVersion = 26
-    supportVersion = '27.0.2'
+    compileSdkVersion = 27
+    supportVersion = '27.1.1'
 
     //当需要时直接从这里引入到base的build.gradle中
     libs = [
@@ -39,9 +39,7 @@ ext {
             AutoLayout           : 'com.zhy:autolayout:1.4.5',
             GreenDao             : 'org.greenrobot:greendao:3.2.2',                                 //GreenDao数据库
             //mvvm
-            RxBindind            : 'com.jakewharton.rxbinding2:rxbinding:2.1.1',                    // RxBinding绑定数据
-            //RecyclerView的DataBinding套装
-            BindCollectionAdapter: "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0",
-            BindCollectionAdapterRecyclerView: "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0"
+            //ArchLifecycle
+            ArchLifecycle        : "android.arch.lifecycle:extensions:1.1.1"
     ]
 }

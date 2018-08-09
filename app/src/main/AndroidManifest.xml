@@ -18,13 +18,16 @@
             android:name="design_height"
             android:value="1334"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DemoActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

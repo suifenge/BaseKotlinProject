@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ImageView">
+        <attr name="url" />
+        <attr name="placeHolderRes" format="reference|color" />
+        <attr name="errorRes" format="reference|color"/>
+    </declare-styleable>
+
+</resources>

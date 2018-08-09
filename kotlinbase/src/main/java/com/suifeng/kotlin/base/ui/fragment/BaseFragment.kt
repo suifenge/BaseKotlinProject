@@ -8,7 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.suifeng.kotlin.base.ui.vm.BaseViewModel
+import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.components.support.RxFragment
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
+import java.util.concurrent.TimeUnit
 
 /**
  * @author ljc
@@ -16,8 +21,9 @@ import com.trello.rxlifecycle2.components.support.RxFragment
  * @describe
  */
 abstract class BaseFragment<V: ViewDataBinding, out VM: BaseViewModel>(
-        private val layoutResId: Int
-) : RxFragment(), View.OnClickListener {
+        private val layoutResId: Int,
+        private vararg val ids: Int = intArrayOf(0)
+) : RxFragment(), View.OnClickListener{
 
     var mRootView: View? = null
     private var isInit = false
@@ -35,6 +41,8 @@ abstract class BaseFragment<V: ViewDataBinding, out VM: BaseViewModel>(
             isInit = true
             viewModel?.onCreate()
             init(mRootView, savedInstanceState)
+            //初始化监听
+            setClickViewId(mRootView)
             if(isBindEventBusHere()) {
                 viewModel?.registerEventBus()
             }
@@ -67,6 +75,32 @@ abstract class BaseFragment<V: ViewDataBinding, out VM: BaseViewModel>(
      */
     fun <T : View> findViewById(@IdRes id: Int): T {
         return mRootView!!.findViewById(id)
+    }
+
+    private fun setClickViewId(view: View?) {
+        view?.let {
+            Observable.create(object : ObservableOnSubscribe<View>, View.OnClickListener {
+                lateinit var emitter: ObservableEmitter<View>
+                override fun onClick(v: View) {
+                    emitter.onNext(v)
+                }
+
+                override fun subscribe(emitter: ObservableEmitter<View>) {
+                    this.emitter = emitter
+                    ids.forEach { id ->
+                        if (id != 0) {
+                            it.findViewById<View>(id).setOnClickListener(this)
+                        }
+                    }
+                }
+            }).compose(bindUntilEvent(FragmentEvent.DESTROY))
+                    .throttleFirst(500, TimeUnit.MILLISECONDS)
+                    .subscribe({ onClick(it) })
+        }
+    }
+
+    override fun onClick(view: View) {
+
     }
 
     override fun onDestroy() {

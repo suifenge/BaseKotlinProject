@@ -13,27 +13,35 @@ import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
 import com.suifeng.kotlin.base.ui.vm.BaseViewModel
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
+import com.suifeng.kotlin.base.widget.auto.AutoConstraintLayout
+import com.trello.rxlifecycle2.android.ActivityEvent
 import com.zhy.autolayout.AutoFrameLayout
 import com.zhy.autolayout.AutoLinearLayout
 import com.zhy.autolayout.AutoRelativeLayout
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
+import java.util.concurrent.TimeUnit
 
 /**
  * @author ljc
  * @data 2018/6/19
  * @describe
  */
-abstract class BaseActivity<V: ViewDataBinding, out VM: BaseViewModel>(
+abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
     //自定义布局的id
     private val layoutResId: Int,
-    //是否可以右划退出，默认是false
-    private val swipeBackEnable: Boolean = false,
+    //需要设置点击事件的ViewId
+    private vararg val ids: Int = intArrayOf(0),
+    //是否可以右划退出，默认是true
+    private val swipeBackEnable: Boolean = true,
     //状态栏颜色
     private val statusBarColor: Int = 0,
     private val statusBarAlpha: Int = 0
-) : SwipeBackActivity(), View.OnClickListener {
+) : SwipeBackActivity(), View.OnClickListener{
 
-    private lateinit var binding: V
-    private var viewModel: VM? = null
+    protected lateinit var binding: V
+    protected var viewModel: VM? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(toggleOverridePendingTransition()) {
@@ -57,6 +65,8 @@ abstract class BaseActivity<V: ViewDataBinding, out VM: BaseViewModel>(
         initEventBus()
         //初始化Activity
         init()
+        //初始化监听
+        setClickViewId()
         viewModel?.onCreate()
     }
 
@@ -68,12 +78,33 @@ abstract class BaseActivity<V: ViewDataBinding, out VM: BaseViewModel>(
         binding = DataBindingUtil.setContentView(this, layoutResId)
         viewModel = initViewModel()
         binding.setVariable(initVariableId(), viewModel)
+        binding.setLifecycleOwner(this) //绑定LiveData并对Binding设置LifecycleOwner
     }
 
     private fun initEventBus() {
         if(isBindEventBusHere()) {
             viewModel?.registerEventBus()
         }
+    }
+
+    private fun setClickViewId() {
+        Observable.create(object : ObservableOnSubscribe<View>, View.OnClickListener {
+            lateinit var emitter: ObservableEmitter<View>
+            override fun onClick(v: View) {
+                emitter.onNext(v)
+            }
+
+            override fun subscribe(emitter: ObservableEmitter<View>) {
+                this.emitter = emitter
+                ids.forEach { id ->
+                    if (id != 0) {
+                        findViewById<View>(id).setOnClickListener(this)
+                    }
+                }
+            }
+        }).compose(bindUntilEvent(ActivityEvent.DESTROY))
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .subscribe({ onClick(it) })
     }
 
     open fun initStatusBar() {
@@ -108,8 +139,13 @@ abstract class BaseActivity<V: ViewDataBinding, out VM: BaseViewModel>(
             IConfig.LAYOUT_FRAMELAYOUT      -> AutoFrameLayout(context, attrs)
             IConfig.LAYOUT_LINEARLAYOUT     -> AutoLinearLayout(context, attrs)
             IConfig.LAYOUT_RELATIVELAYOUT   -> AutoRelativeLayout(context, attrs)
+            IConfig.LAYOUT_CONSTRAINTLAYOUT -> AutoConstraintLayout(context, attrs)
             else                            -> super.onCreateView(name, context, attrs)
         }
+    }
+
+    override fun onClick(view: View) {
+
     }
 
     override fun onDestroy() {

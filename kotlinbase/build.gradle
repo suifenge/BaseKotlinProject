@@ -33,6 +33,7 @@ dependencies {
     api lib.SupportDesign
     api lib.SupportV4
     api lib.SupportRecyclerviewV7
+    api lib.ConstraintLayout
     api lib.Multidex
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api (lib.RxLifeCycle) {
@@ -57,7 +58,5 @@ dependencies {
     api lib.Glide
     kapt lib.GlideCompiler
     //mvvm
-    api lib.RxBindind
-    api lib.BindCollectionAdapter
-    api lib.BindCollectionAdapterRecyclerView
+    api lib.ArchLifecycle
 }
