@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- APP主题颜色 -->
-    <color name="default_app_main_color">#8841e0</color>
+    <color name="default_app_main_color">#3F51B5</color>
     <!-- 副主题颜色 -->
     <color name="default_app_f_color">#d6a23e</color>
     <!-- 加载中的动画 -->

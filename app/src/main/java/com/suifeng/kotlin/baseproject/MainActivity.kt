@@ -1,7 +1,6 @@
 package com.suifeng.kotlin.baseproject
 
 import android.app.ProgressDialog
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.Observable
 import android.text.method.HideReturnsTransformationMethod
@@ -12,7 +11,6 @@ import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.base.utils.log.KLog
 import com.suifeng.kotlin.baseproject.databinding.ActivityMainBinding
 import com.suifeng.kotlin.baseproject.vm.LoginViewModel
-import com.suifeng.kotlin.baseproject.vm.ViewModelFactory
 
 class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
         R.layout.activity_main,
@@ -24,7 +22,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
     override fun initVariableId(): Int = BR.viewModel
 
     override fun initViewModel(): LoginViewModel {
-        return ViewModelProviders.of(this, ViewModelFactory(this.application)).get(LoginViewModel::class.java)
+        return ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
     }
 
     override fun init() {

@@ -1,17 +1,19 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
 import android.text.TextUtils
 import com.suifeng.kotlin.base.ui.vm.BaseViewModel
 import com.suifeng.kotlin.base.ui.vm.rxlife.ViewModelEvent
+import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.DemoActivity
 import es.dmoral.toasty.Toasty
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author ljc
@@ -19,7 +21,8 @@ import java.util.concurrent.TimeUnit
  * @describe
  */
 
-class LoginViewModel(application: Application): BaseViewModel(application) {
+@Singleton
+class LoginViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application) {
     val userName = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
