@@ -38,6 +38,8 @@ ext {
             ConvenientBanner     : 'com.bigkoo:ConvenientBanner:2.1.4',                             //轮播图
             AutoLayout           : 'com.zhy:autolayout:1.4.5',
             GreenDao             : 'org.greenrobot:greendao:3.2.2',                                 //GreenDao数据库
+            Dagger2              : 'com.google.dagger:dagger:2.16',                                 //Dagger2注解
+            Dagger2Android       : 'com.google.dagger:dagger-android-support:2.16',
             //mvvm
             //ArchLifecycle
             ArchLifecycle        : "android.arch.lifecycle:extensions:1.1.1"

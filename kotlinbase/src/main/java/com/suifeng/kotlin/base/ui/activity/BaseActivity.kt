@@ -1,5 +1,6 @@
 package com.suifeng.kotlin.base.ui.activity
 
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -18,10 +19,12 @@ import com.trello.rxlifecycle2.android.ActivityEvent
 import com.zhy.autolayout.AutoFrameLayout
 import com.zhy.autolayout.AutoLinearLayout
 import com.zhy.autolayout.AutoRelativeLayout
+import dagger.android.AndroidInjection
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * @author ljc
@@ -42,6 +45,7 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
 
     protected lateinit var binding: V
     protected var viewModel: VM? = null
+    @Inject protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(toggleOverridePendingTransition()) {
@@ -54,6 +58,7 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
                 FADE         -> { overridePendingTransition(R.anim.fade_in, R.anim.fade_out) }
             }
         }
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         AppManager.get().addActivity(this)
         initViewDataBinding()

@@ -59,4 +59,6 @@ dependencies {
     kapt lib.GlideCompiler
     //mvvm
     api lib.ArchLifecycle
+    api lib.Dagger2
+    api lib.Dagger2Android
 }

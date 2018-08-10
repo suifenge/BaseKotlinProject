@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.suifeng.kotlin.base.ui.vm.BaseViewModel
 import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.components.support.RxFragment
+import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -32,6 +33,7 @@ abstract class BaseFragment<V: ViewDataBinding, out VM: BaseViewModel>(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if(mRootView == null) {
+            AndroidSupportInjection.inject(this)
             binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
             viewModel = initViewModel()
             binding.setVariable(initVariableId(), viewModel)
