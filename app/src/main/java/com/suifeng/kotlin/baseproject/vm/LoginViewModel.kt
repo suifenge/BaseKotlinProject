@@ -6,7 +6,7 @@ import android.text.TextUtils
 import com.suifeng.kotlin.base.ui.vm.BaseViewModel
 import com.suifeng.kotlin.base.ui.vm.rxlife.ViewModelEvent
 import com.suifeng.kotlin.baseproject.CustomApplication
-import com.suifeng.kotlin.baseproject.DemoActivity
+import com.suifeng.kotlin.baseproject.activity.DemoActivity
 import es.dmoral.toasty.Toasty
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

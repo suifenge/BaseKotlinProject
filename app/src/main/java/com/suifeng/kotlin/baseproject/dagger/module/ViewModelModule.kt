@@ -1,9 +1,12 @@
 package com.suifeng.kotlin.baseproject.dagger.module
 
 import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
+import com.suifeng.kotlin.base.ui.vm.ViewModelFactory
 import com.suifeng.kotlin.baseproject.dagger.scopes.ViewModelKey
 import com.suifeng.kotlin.baseproject.vm.DemoViewModel
 import com.suifeng.kotlin.baseproject.vm.LoginViewModel
+import com.suifeng.kotlin.baseproject.vm.NetViewModel
 import com.suifeng.kotlin.baseproject.vm.RecyclerViewModel
 import dagger.Binds
 import dagger.Module
@@ -16,6 +19,9 @@ import dagger.multibindings.IntoMap
  */
 @Module
 internal abstract class ViewModelModule {
+
+    @Binds
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     @IntoMap
@@ -31,5 +37,10 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RecyclerViewModel::class)
     abstract fun bindRecyclerViewViewModel(viewModel: RecyclerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NetViewModel::class)
+    abstract fun bindNetViewViewModel(viewModel: NetViewModel): ViewModel
 
 }

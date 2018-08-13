@@ -21,7 +21,7 @@
             android:name="design_height"
             android:value="1334"/>
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DemoActivity"
+        <activity android:name=".activity.DemoActivity"
             android:launchMode="singleTop"/>
-        <activity android:name=".RecyclerActivity"
+        <activity android:name=".activity.RecyclerActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"/>
+        <activity android:name=".activity.NetActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

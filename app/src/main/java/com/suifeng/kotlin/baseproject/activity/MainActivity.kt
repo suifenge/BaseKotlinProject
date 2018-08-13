@@ -1,4 +1,4 @@
-package com.suifeng.kotlin.baseproject
+package com.suifeng.kotlin.baseproject.activity
 
 import android.app.ProgressDialog
 import android.arch.lifecycle.ViewModelProviders
@@ -9,6 +9,8 @@ import android.view.View
 import com.suifeng.kotlin.base.extension.bindKeyboardLayout
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.base.utils.log.KLog
+import com.suifeng.kotlin.baseproject.BR
+import com.suifeng.kotlin.baseproject.R
 import com.suifeng.kotlin.baseproject.databinding.ActivityMainBinding
 import com.suifeng.kotlin.baseproject.vm.LoginViewModel
 

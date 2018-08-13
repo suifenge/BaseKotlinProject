@@ -1,10 +1,12 @@
 package com.suifeng.kotlin.baseproject.dagger.component
 
 import com.suifeng.kotlin.baseproject.CustomApplication
-import com.suifeng.kotlin.baseproject.dagger.module.ViewModelFactoryModule
+import com.suifeng.kotlin.baseproject.dagger.module.ActivityModule
+import com.suifeng.kotlin.baseproject.dagger.module.AppModule
 import com.suifeng.kotlin.baseproject.dagger.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
@@ -15,7 +17,12 @@ import javax.inject.Singleton
  * @describe
  */
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, ViewModelModule::class, ViewModelFactoryModule::class])
+@Component(modules = [
+    AndroidInjectionModule::class,
+    AndroidSupportInjectionModule::class,
+    AppModule::class,
+    ViewModelModule::class,
+    ActivityModule::class])
 interface AppComponent: AndroidInjector<CustomApplication> {
 
     @Component.Builder

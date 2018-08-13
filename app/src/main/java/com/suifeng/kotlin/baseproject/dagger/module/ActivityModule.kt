@@ -1,11 +1,10 @@
 package com.suifeng.kotlin.baseproject.dagger.module
 
-import android.arch.lifecycle.ViewModelProvider
-import com.suifeng.kotlin.base.ui.vm.ViewModelFactory
-import com.suifeng.kotlin.baseproject.DemoActivity
-import com.suifeng.kotlin.baseproject.MainActivity
-import com.suifeng.kotlin.baseproject.RecyclerActivity
-import dagger.Binds
+import com.suifeng.kotlin.baseproject.activity.DemoActivity
+import com.suifeng.kotlin.baseproject.activity.MainActivity
+import com.suifeng.kotlin.baseproject.activity.NetActivity
+import com.suifeng.kotlin.baseproject.activity.RecyclerActivity
+import com.suifeng.kotlin.baseproject.dagger.scopes.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,17 +15,21 @@ import dagger.android.ContributesAndroidInjector
  */
 
 @Module
-internal abstract class ViewModelFactoryModule {
+internal abstract class ActivityModule {
 
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
+    @ActivityScope
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     internal abstract fun contributeMainActivity(): MainActivity
 
+    @ActivityScope
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     internal abstract fun contributeDemoActivity(): DemoActivity
 
+    @ActivityScope
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     internal abstract fun contributeRecyclerActivity(): RecyclerActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    internal abstract fun contributeNetActivity(): NetActivity
 }

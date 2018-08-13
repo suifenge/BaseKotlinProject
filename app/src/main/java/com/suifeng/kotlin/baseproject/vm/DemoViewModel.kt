@@ -12,6 +12,4 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class DemoViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application) {
-
-}
+class DemoViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application)

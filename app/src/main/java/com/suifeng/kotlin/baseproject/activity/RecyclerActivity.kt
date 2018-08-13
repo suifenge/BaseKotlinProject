@@ -1,10 +1,12 @@
-package com.suifeng.kotlin.baseproject
+package com.suifeng.kotlin.baseproject.activity
 
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.base.widget.recyclerview.HotItemDecoration
+import com.suifeng.kotlin.baseproject.BR
+import com.suifeng.kotlin.baseproject.R
 import com.suifeng.kotlin.baseproject.adapter.SimpleAdapter
 import com.suifeng.kotlin.baseproject.databinding.ActivityRecyclerViewBinding
 import com.suifeng.kotlin.baseproject.ex.setToolbarTitle
