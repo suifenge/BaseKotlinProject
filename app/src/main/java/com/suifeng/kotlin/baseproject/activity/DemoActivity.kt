@@ -15,7 +15,7 @@ import com.suifeng.kotlin.baseproject.vm.DemoViewModel
  */
 class DemoActivity: BaseActivity<ActivityDemoBinding, DemoViewModel>(
         R.layout.activity_demo,
-        R.id.btn_recycler_view, R.id.btn_net
+        R.id.btn_recycler_view, R.id.btn_net, R.id.btn_fragment
 ) {
     override fun initVariableId(): Int {
         return BR.demoViewModel
@@ -34,6 +34,7 @@ class DemoActivity: BaseActivity<ActivityDemoBinding, DemoViewModel>(
         when(view.id) {
             R.id.btn_recycler_view -> viewModel?.startActivity(RecyclerActivity::class.java)
             R.id.btn_net -> viewModel?.startActivity(NetActivity::class.java)
+            R.id.btn_fragment -> viewModel?.startActivity(FragmentActivity::class.java)
         }
     }
 

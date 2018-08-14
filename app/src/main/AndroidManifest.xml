@@ -37,6 +37,9 @@
         <activity android:name=".activity.NetActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.FragmentActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

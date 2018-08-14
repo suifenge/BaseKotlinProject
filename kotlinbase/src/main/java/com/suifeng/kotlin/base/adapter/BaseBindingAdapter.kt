@@ -17,7 +17,7 @@ abstract class BaseBindingAdapter<T>(
         context: Context,
         private val variableId: Int,
         private val layoutId: Int,
-        private val list: ArrayList<T>,
+        val list: ArrayList<T> = ArrayList(),
         //Item点击监听回调
         private var itemClickListener: BaseBindingAdapter.OnItemClickListener<T>? = null,
         //点击View的Id

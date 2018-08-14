@@ -1,5 +1,6 @@
 package com.suifeng.kotlin.base.ui.fragment
 
+import android.arch.lifecycle.ViewModelProvider
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -15,21 +16,24 @@ import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * @author ljc
  * @data 2018/6/20
  * @describe
  */
-abstract class BaseFragment<V: ViewDataBinding, out VM: BaseViewModel>(
+abstract class BaseFragment<V: ViewDataBinding, VM: BaseViewModel>(
         private val layoutResId: Int,
         private vararg val ids: Int = intArrayOf(0)
 ) : RxFragment(), View.OnClickListener{
 
-    var mRootView: View? = null
+    private var mRootView: View? = null
     private var isInit = false
-    private lateinit var binding: V
-    private var viewModel: VM? = null
+    protected lateinit var binding: V
+    protected var viewModel: VM? = null
+    @Inject
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if(mRootView == null) {
@@ -37,6 +41,7 @@ abstract class BaseFragment<V: ViewDataBinding, out VM: BaseViewModel>(
             binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
             viewModel = initViewModel()
             binding.setVariable(initVariableId(), viewModel)
+            binding.setLifecycleOwner(this)
             mRootView = binding.root
         }
         if(!isInit) {

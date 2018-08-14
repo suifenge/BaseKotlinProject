@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
  * @describe
  */
 
-@BindingAdapter(value = ["url", "placeHolderRes", "errorRes"])
+@BindingAdapter(value = ["url", "placeHolderRes", "errorRes"], requireAll = false)
 public fun setImageUrl(imageView: ImageView, url: String?, placeHolderRes: Int, errorRes: Int) {
     if(!TextUtils.isEmpty(url)) {
         val requestOptions = RequestOptions()
