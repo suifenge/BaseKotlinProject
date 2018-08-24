@@ -8,7 +8,7 @@ import android.support.annotation.IdRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.suifeng.kotlin.base.ui.vm.BaseViewModel
+import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
 import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.components.support.RxFragment
 import dagger.android.support.AndroidSupportInjection
@@ -23,7 +23,7 @@ import javax.inject.Inject
  * @data 2018/6/20
  * @describe
  */
-abstract class BaseFragment<V: ViewDataBinding, VM: BaseViewModel>(
+abstract class BaseFragment<V: ViewDataBinding>(
         private val layoutResId: Int,
         private vararg val ids: Int = intArrayOf(0)
 ) : RxFragment(), View.OnClickListener{
@@ -31,52 +31,37 @@ abstract class BaseFragment<V: ViewDataBinding, VM: BaseViewModel>(
     private var mRootView: View? = null
     private var isInit = false
     protected lateinit var binding: V
-    protected var viewModel: VM? = null
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var appViewModelProvider: ViewModelProvider
+
+    protected val viewModelProvider: ViewModelProvider by lazy {
+        createViewModelProvider()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if(mRootView == null) {
             AndroidSupportInjection.inject(this)
             binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
-            viewModel = initViewModel()
-            binding.setVariable(initVariableId(), viewModel)
             binding.setLifecycleOwner(this)
             mRootView = binding.root
         }
         if(!isInit) {
             isInit = true
-            viewModel?.onCreate()
             init(mRootView, savedInstanceState)
             //初始化监听
             setClickViewId(mRootView)
-            if(isBindEventBusHere()) {
-                viewModel?.registerEventBus()
-            }
         }
         return mRootView
     }
 
     /**
-     * 初始化ViewModel的id
-     */
-    abstract fun initVariableId(): Int
-
-    /**
-     * 初始化ViewModel
-     */
-    abstract fun initViewModel(): VM
-    /**
      * 初始化
      */
     abstract fun init(rootView: View?, savedInstanceState: Bundle?)
-    open fun isBindEventBusHere() : Boolean { return false }
-    /**
-     * 刷新布局
-     */
-    open fun refreshLayout() {
-        binding.setVariable(initVariableId(), viewModel)
-    }
+
     /**
      * 简化findViewById操作
      */
@@ -110,10 +95,12 @@ abstract class BaseFragment<V: ViewDataBinding, VM: BaseViewModel>(
 
     }
 
-    override fun onDestroy() {
-        if(isBindEventBusHere()) {
-            viewModel?.unregisterEventBus()
-        }
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.unbind()
+    }
+
+    private fun createViewModelProvider(): ViewModelProvider{
+        return SuperViewModelProvider(this, viewModelFactory, appViewModelProvider)
     }
 }

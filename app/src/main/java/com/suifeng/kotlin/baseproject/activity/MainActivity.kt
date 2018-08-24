@@ -1,33 +1,30 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.app.ProgressDialog
-import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.Observable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import com.suifeng.kotlin.base.extension.bindKeyboardLayout
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
-import com.suifeng.kotlin.base.utils.log.KLog
-import com.suifeng.kotlin.baseproject.BR
 import com.suifeng.kotlin.baseproject.R
 import com.suifeng.kotlin.baseproject.databinding.ActivityMainBinding
 import com.suifeng.kotlin.baseproject.vm.LoginViewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
+class MainActivity : BaseActivity<ActivityMainBinding>(
         R.layout.activity_main,
         R.id.iv_clear,
         R.id.iv_switch_password,
         R.id.btn_login,
         swipeBackEnable = false
 ) {
-    override fun initVariableId(): Int = BR.viewModel
 
-    override fun initViewModel(): LoginViewModel {
-        return ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
+    private val viewModel by lazy {
+        viewModelProvider.get(LoginViewModel::class.java)
     }
 
     override fun init() {
+        binding.viewModel = viewModel
         //内容布局、按钮和键盘进行绑定，不遮盖按钮
         binding.llContent.bindKeyboardLayout(binding.btnLogin)
         binding.edtUsername.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -36,11 +33,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
             } else {
                 View.INVISIBLE
             }
-            viewModel?.clearUserNameBtnVisibility(visibilityValue)
+            viewModel.clearUserNameBtnVisibility(visibilityValue)
         }
-        viewModel?.passwordVisibility?.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback(){
+        viewModel.passwordVisibility.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback(){
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                if(viewModel != null && viewModel!!.isPasswordVisibility()) {
+                if(viewModel.isPasswordVisibility()) {
                     //密码可见
                     binding.ivSwitchPassword.setImageResource(R.mipmap.show_psw_press)
                     binding.etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -50,15 +47,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
                 }
             }
         })
-        val progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("登录中...")
-        progressDialog.setCancelable(false)
-        viewModel?.progressDialogShow!!.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback(){
+        viewModel.loginState.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback(){
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                if(viewModel?.progressDialogShow!!.get()) {
-                    progressDialog.show()
-                } else {
-                    progressDialog.dismiss()
+                if(viewModel.loginState.get()) {
+                    startActivity(Intent(this@MainActivity, DemoActivity::class.java))
+                    finish()
                 }
             }
         })
@@ -71,14 +64,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
     override fun onClick(view: View) {
         when(view.id) {
             R.id.iv_clear -> {
-                KLog.i("wtf", "清除按钮点击")
-                viewModel?.clearUserName()
+                viewModel.clearUserName()
             }
             R.id.iv_switch_password -> {
-                viewModel?.switchPasswordVisibility()
+                viewModel.switchPasswordVisibility()
             }
             R.id.btn_login -> {
-                viewModel?.login()
+                viewModel.login()
             }
         }
     }

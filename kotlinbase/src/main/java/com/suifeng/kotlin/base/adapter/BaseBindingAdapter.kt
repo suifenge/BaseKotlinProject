@@ -13,31 +13,39 @@ import android.view.ViewGroup
  * @data 2018/8/10
  * @describe
  */
-abstract class BaseBindingAdapter<T>(
+abstract class BaseBindingAdapter<T, V: ViewDataBinding>(
         context: Context,
-        private val variableId: Int,
         private val layoutId: Int,
         val list: ArrayList<T> = ArrayList(),
         //Item点击监听回调
-        private var itemClickListener: BaseBindingAdapter.OnItemClickListener<T>? = null,
+        var itemClickListener: BaseBindingAdapter.OnItemClickListener<T>? = null,
         //点击View的Id
-        private val clickIds: ArrayList<Int>? = null
-): RecyclerView.Adapter<BaseBindingViewHolder>() {
+        vararg var clickIds: Int
+): RecyclerView.Adapter<BaseBindingViewHolder<V>>() {
 
     private val layoutInflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder {
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, layoutId, parent, false)
+    open fun getLayoutId(viewType: Int): Int {
+        return layoutId //默认返回传入的layout，可重写
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<V> {
+        val mLayoutId = getLayoutId(viewType)
+        val binding = DataBindingUtil.inflate<V>(layoutInflater, mLayoutId, parent, false)
         //绑定监听回调
         initializationItemClickListener(binding.root)
         // 创建
         return BaseBindingViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BaseBindingViewHolder, position: Int) {
-        holder.binding.setVariable(variableId, list[position])
+    override fun onBindViewHolder(holder: BaseBindingViewHolder<V>, position: Int) {
+        holder.binding.root.tag = position
+        val bean = list[position]
+        convert(holder, bean, position)
         holder.binding.executePendingBindings()
     }
+
+    abstract fun convert(holder: BaseBindingViewHolder<V>, bean: T, position: Int)
 
     override fun getItemCount(): Int {
         return list.size
@@ -48,7 +56,7 @@ abstract class BaseBindingAdapter<T>(
      *  @param inflate   绑定的布局
      */
     private fun initializationItemClickListener(inflate: View) {
-        if (clickIds == null) {
+        if (clickIds.isEmpty()) {
             // 给 root item 设置监听
             inflate.setOnClickListener {
                 clickCallback(inflate, it)
@@ -86,6 +94,6 @@ abstract class BaseBindingAdapter<T>(
          *  @param bean      获取到的数据结构
          *  @param position  点击的item
          */
-        fun click(view: View, adapter: BaseBindingAdapter<T>, bean: T, position: Int)
+        fun click(view: View, adapter: BaseBindingAdapter<T, *>, bean: T, position: Int)
     }
 }

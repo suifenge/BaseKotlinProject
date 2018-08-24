@@ -1,4 +1,4 @@
-package com.suifeng.kotlin.base.ui.vm
+package com.suifeng.kotlin.base.mvvm.vm
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

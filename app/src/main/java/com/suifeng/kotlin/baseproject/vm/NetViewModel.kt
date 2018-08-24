@@ -1,12 +1,12 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.arch.lifecycle.MutableLiveData
+import android.databinding.ObservableField
 import android.text.TextUtils
+import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.net.ex.convert
-import com.suifeng.kotlin.base.ui.vm.BaseViewModel
 import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.data.NetRepository
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import com.suifeng.kotlin.baseproject.ex.responseError
 import es.dmoral.toasty.Toasty
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,27 +17,26 @@ import javax.inject.Singleton
  * @describe
  */
 @Singleton
-class NetViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application) {
+class NetViewModel @Inject constructor(application: CustomApplication, private val mNetRepository: NetRepository): BaseViewModel(application) {
 
-    @Inject lateinit var mNetRepository: NetRepository
+    val cityName = ObservableField<String>()
+    val weather = ObservableField<String>()
 
-    val cityName = MutableLiveData<String>()
-    val weather = MutableLiveData<String>()
-
-    fun getWeather(mContext: RxAppCompatActivity) {
-        if(TextUtils.isEmpty(cityName.value)) {
+    fun getWeather() {
+        if(TextUtils.isEmpty(cityName.get())) {
             Toasty.error(getApplication(), "请输入城市名称").show()
             return
         }
-        mNetRepository.getWeather(cityName.value!!)
-                .convert(mContext, success = {
+        mNetRepository.getWeather(cityName.get()!!)
+                .convert(success = {
                     val text = "城市：${it.data.city}\n日期：${it.data.forecast[0].date}\n" +
                             "温度：${it.data.forecast[0].high} ~ ${it.data.forecast[0].low}\n风力：${it.data.forecast[0].fengli}\n" +
                             "风向：${it.data.forecast[0].fengxiang}\n天气状况：${it.data.forecast[0].type}\n感冒：${it.data.ganmao}\n" +
                             "当前温度：${it.data.wendu}"
-                    weather.value = text
+                    weather.set(text)
                 }, error = {
-                    weather.value = it.message
+                    weather.set(it.message)
+                    responseError(it)
                 })
     }
 

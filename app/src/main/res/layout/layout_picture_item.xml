@@ -17,7 +17,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:url="@{picture.url}"
-            app:errorRes="@{R.mipmap.ic_launcher}"/>
+            source="@{picture.url}"
+            placeholder="@{R.mipmap.ic_launcher}"
+            errorholder="@{R.mipmap.ic_launcher}"/>
     </RelativeLayout>
 </layout>

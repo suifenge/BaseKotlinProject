@@ -1,12 +1,11 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
 import android.text.TextUtils
-import com.suifeng.kotlin.base.ui.vm.BaseViewModel
-import com.suifeng.kotlin.base.ui.vm.rxlife.ViewModelEvent
+import android.view.View
+import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.baseproject.CustomApplication
-import com.suifeng.kotlin.baseproject.activity.DemoActivity
 import es.dmoral.toasty.Toasty
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,35 +22,40 @@ import javax.inject.Singleton
 
 @Singleton
 class LoginViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application) {
-    val userName = MutableLiveData<String>()
-    val password = MutableLiveData<String>()
+
+    val userName = ObservableField<String>()
+    val password = ObservableField<String>()
 
     //清除按钮visibility状态
-    val clearBtnVisibility = MutableLiveData<Int>()
+    val clearBtnVisibility = ObservableField<Int>(View.VISIBLE)
 
     val passwordVisibility = ObservableBoolean(false)
+    val loginState = ObservableBoolean(false)
 
-    val progressDialogShow = ObservableBoolean(false)
     //模拟登录
     fun login() {
-        if(TextUtils.isEmpty(userName.value)) {
+        if(TextUtils.isEmpty(userName.get())) {
             Toasty.error(getApplication(), "请输入账号!").show()
             return
         }
-        if(TextUtils.isEmpty(password.value)) {
+        if(TextUtils.isEmpty(password.get())) {
             Toasty.error(getApplication(), "请输入密码!").show()
             return
         }
         //登录跳转
-        progressDialogShow.set(true)
+        progress.show("登录中...")
         Observable.timer(1500, TimeUnit.MILLISECONDS)
-                .compose(bindUntilEvent(ViewModelEvent.MODEL_DESTROY))
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    progressDialogShow.set(false)
-                    startActivity(DemoActivity::class.java)
-                }
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread(), true)
+                .subscribe ({
+                    progress.hide()
+                    toast.show("登录成功")
+                    loginState.set(true)
+                }, {
+                    loginState.set(false)
+                    error.call(0, it.localizedMessage)
+                })
     }
 
     fun switchPasswordVisibility() {
@@ -59,11 +63,11 @@ class LoginViewModel @Inject constructor(application: CustomApplication): BaseVi
     }
 
     fun clearUserName() {
-        userName.value = ""
+        userName.set("")
     }
 
     fun clearUserNameBtnVisibility(visibility: Int) {
-        clearBtnVisibility.value = visibility
+        clearBtnVisibility.set(visibility)
     }
 
     fun isPasswordVisibility(): Boolean {

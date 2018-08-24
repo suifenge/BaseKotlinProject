@@ -2,7 +2,7 @@ package com.suifeng.kotlin.baseproject.dagger.module
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.suifeng.kotlin.base.ui.vm.ViewModelFactory
+import com.suifeng.kotlin.base.mvvm.vm.ViewModelFactory
 import com.suifeng.kotlin.baseproject.dagger.scopes.ViewModelKey
 import com.suifeng.kotlin.baseproject.vm.*
 import dagger.Binds

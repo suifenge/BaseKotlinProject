@@ -6,6 +6,7 @@
 
     <data>
         <import type="com.suifeng.kotlin.baseproject.R"/>
+        <import type="com.suifeng.kotlin.baseproject.utils.ResourceUtils"/>
         <variable
             name="dataBean"
             type="com.suifeng.kotlin.baseproject.bean.DataBean"/>
@@ -25,10 +26,12 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            app:url="@{dataBean.icon}"
-            app:placeHolderRes="@{R.mipmap.ic_launcher}"
-            app:errorRes="@{R.mipmap.ic_launcher}"
-            tools:src="@mipmap/ic_launcher"/>
+            tools:src="@mipmap/ic_launcher"
+            source="@{dataBean.icon}"
+            placeholder="@{R.mipmap.ic_launcher}"/>
+            <!--两种写法-->
+            <!--placeholder="@{R.mipmap.ic_launcher}"-->
+            <!--placeholder="@{ResourceUtils.getDrawable(R.mipmap.ic_launcher)}"-->
 
         <TextView
             android:layout_width="wrap_content"

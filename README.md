@@ -1,5 +1,6 @@
 # BaseKotlinProject
 base project design by kotlin
+使用MVVM设计
 ## 使用
 ### 引用工程
 > 直接依赖basekotlin库工程

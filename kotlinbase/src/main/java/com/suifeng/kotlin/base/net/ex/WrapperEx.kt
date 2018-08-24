@@ -7,6 +7,7 @@ import android.net.NetworkInfo
 import com.ssf.framework.net.interfac.IDialog
 import com.suifeng.kotlin.base.net.common.ProgressSubscriber
 import com.suifeng.kotlin.base.net.common.ResponseListener
+import com.suifeng.kotlin.base.net.common.ResponseSubscriber
 import com.suifeng.kotlin.base.net.transformer.ApplySchedulers
 import com.suifeng.kotlin.base.net.transformer.ConvertSchedulers
 import com.suifeng.kotlin.base.net.transformer.wrapperSchedulers
@@ -60,6 +61,40 @@ public inline fun <T> Observable<T>.apply(
             }))
 }
 
+public inline fun <T> Observable<T>.apply(
+        // 成功回调
+        noinline success: (T) -> Unit,
+        // 失败回调
+        noinline error: (Throwable) -> Unit = {},
+        // 成功后，并执行完 success 方法后回调
+        noinline complete: () -> Unit = {}
+) {
+    this.compose(ApplySchedulers())
+            .subscribe(ResponseSubscriber(responseListener = object : ResponseListener<T> {
+
+                override fun onSucceed(data: T) {
+                    try {
+                        success(data)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+
+                override fun onError(exception: Throwable) {
+                    try {
+                        error(exception)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        KLog.e("onError函数调用奔溃")
+                    }
+                }
+
+                override fun onComplete() {
+                    complete()
+                }
+            }))
+}
+
 /**
  * activity网络请求扩展
  */
@@ -78,6 +113,42 @@ public inline fun <T> Observable<Response<T>>.convert(
     this.compose(ConvertSchedulers())
             .compose(rx.bindUntilEvent(ActivityEvent.DESTROY))
             .subscribe(ProgressSubscriber(rx.supportFragmentManager, iDialog = iDialog, responseListener = object :
+                    ResponseListener<T> {
+
+                override fun onSucceed(data: T) {
+                    try {
+                        success(data)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        onError(e)
+                    }
+                }
+
+                override fun onError(exception: Throwable) {
+                    try {
+                        error(exception)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        KLog.e("onError函数调用奔溃")
+                    }
+                }
+
+                override fun onComplete() {
+                    complete()
+                }
+            }))
+}
+
+public inline fun <T> Observable<Response<T>>.convert(
+        // 成功回调
+        noinline success: (T) -> Unit,
+        // 失败回调
+        noinline error: (Throwable) -> Unit = {},
+        // 成功后，并执行完 success 方法后回调
+        noinline complete: () -> Unit = {}
+) {
+    this.compose(ConvertSchedulers())
+            .subscribe(ResponseSubscriber(responseListener = object :
                     ResponseListener<T> {
 
                 override fun onSucceed(data: T) {

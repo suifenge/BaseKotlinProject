@@ -8,4 +8,4 @@ import android.support.v7.widget.RecyclerView
  * @data 2018/8/10
  * @describe
  */
-class BaseBindingViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root)
+class BaseBindingViewHolder<out T: ViewDataBinding>(val binding: T): RecyclerView.ViewHolder(binding.root)
