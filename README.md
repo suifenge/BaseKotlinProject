@@ -1,5 +1,6 @@
 # BaseKotlinProject
 base project design by kotlin
+分支【mvvm】是本分支使用mvvm的改版,带基本Demo示例
 ## 使用
 ### 引用工程
 > 直接依赖basekotlin库工程
