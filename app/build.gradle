@@ -11,6 +11,14 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        /**
+         * ARouter
+         */
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     dataBinding {
         enabled true
@@ -28,4 +36,5 @@ dependencies {
     implementation "com.google.dagger:dagger-android:2.16"
     kapt 'com.google.dagger:dagger-compiler:2.16'
     kapt "com.google.dagger:dagger-android-processor:2.16"
+    kapt "com.alibaba:arouter-compiler:1.1.4"
 }

@@ -55,7 +55,7 @@ public class ListBinding {
             DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(oldDatas, newDatas));
             oldDatas.clear();
             oldDatas.addAll(newDatas);
-            diffResult.dispatchUpdatesTo(adapter);
+            diffResult.dispatchUpdatesTo(new HeaderAdapterListUpdateCallback(adapter));
         }
     }
 }

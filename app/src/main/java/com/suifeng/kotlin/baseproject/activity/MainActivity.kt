@@ -1,16 +1,18 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.content.Intent
 import android.databinding.Observable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.suifeng.kotlin.base.extension.bindKeyboardLayout
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.baseproject.R
+import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import com.suifeng.kotlin.baseproject.databinding.ActivityMainBinding
 import com.suifeng.kotlin.baseproject.vm.LoginViewModel
 
+@Route(path = ARouterConfig.AR_PATH_MAIN)
 class MainActivity : BaseActivity<ActivityMainBinding>(
         R.layout.activity_main,
         R.id.iv_clear,
@@ -44,14 +46,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 } else {
                     binding.ivSwitchPassword.setImageResource(R.mipmap.show_psw)
                     binding.etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                }
-            }
-        })
-        viewModel.loginState.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback(){
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                if(viewModel.loginState.get()) {
-                    startActivity(Intent(this@MainActivity, DemoActivity::class.java))
-                    finish()
                 }
             }
         })

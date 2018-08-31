@@ -1,5 +1,6 @@
 package com.suifeng.kotlin.baseproject
 
+import com.alibaba.android.arouter.launcher.ARouter
 import com.suifeng.kotlin.baseproject.dagger.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
@@ -21,6 +22,7 @@ class CustomApplication: DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        ARouter.init(this)
     }
 
     companion object {
