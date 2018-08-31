@@ -2,6 +2,7 @@ package com.suifeng.kotlin.baseproject
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.suifeng.kotlin.baseproject.dagger.component.DaggerAppComponent
+import com.suifeng.kotlin.baseproject.ex.initThird
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
@@ -23,6 +24,7 @@ class CustomApplication: DaggerApplication() {
         super.onCreate()
         instance = this
         ARouter.init(this)
+        initThird()
     }
 
     companion object {

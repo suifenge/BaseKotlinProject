@@ -5,7 +5,7 @@ ext {
     compileSdkVersion = 27
     supportVersion = '27.1.1'
 
-    //当需要时直接从这里引入到base的build.gradle中
+    //当需要时直接从这里引入到base的build.gradle中，Compiler类必须在App的gradle中引入
     libs = [
             SupportV7            : "com.android.support:appcompat-v7:$supportVersion",
             SupportV4            : "com.android.support:support-v4:$supportVersion",
@@ -39,7 +39,9 @@ ext {
             AutoLayout           : 'com.zhy:autolayout:1.4.5',
             GreenDao             : 'org.greenrobot:greendao:3.2.2',                                 //GreenDao数据库
             Dagger2              : 'com.google.dagger:dagger:2.16',                                 //Dagger2注解
-            Dagger2Android       : 'com.google.dagger:dagger-android-support:2.16',
+            Dagger2Android       : 'com.google.dagger:dagger-android:2.16',
+            Dagger2AndroidSupport: 'com.google.dagger:dagger-android-support:2.16',
+            FreeProGuard             : 'com.blankj:free-proguard:0.0.7',                            //包含市面上比较主流的库的混淆配置
             //mvvm
             //ArchLifecycle
             ArchLifecycle        : "android.arch.lifecycle:extensions:1.1.1"

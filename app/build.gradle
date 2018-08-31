@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def lib = rootProject.ext.libs
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -33,8 +35,9 @@ android {
 
 dependencies {
     implementation project(':kotlinbase')
-    implementation "com.google.dagger:dagger-android:2.16"
     kapt 'com.google.dagger:dagger-compiler:2.16'
     kapt "com.google.dagger:dagger-android-processor:2.16"
     kapt "com.alibaba:arouter-compiler:1.1.4"
+    implementation lib.SmartRefreshLayout
+    implementation lib.BaseRecyclerViewAdapterHelper
 }
