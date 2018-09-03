@@ -40,19 +40,8 @@ dependencies {
     android:name="design_height"
     android:value="1334"/>
 ```
-## Lib工程目录结构
-```
-├─adapter               对RecyclerView的adapter的封装         
-├─eventbus              EventBus消息实体的封装
-├─net                   网络层封装
-├─permissions           Rxpermission
-├─persenter             对MVP中P层和V层的封装
-├─swipback              右划退出
-├─ui                    BaseActivity、BaseFragment
-├─utils                 工具类
-├─widget                自定义控件类
-```
 ## proguard-rules.pro 混淆文件的
+> 如果引用了FreeProguard，可以减少很多第三方的混淆配置  
 ```
 #------------------------------------------主项目混淆规则----------------------------------------------
 #实体类不参与混淆
