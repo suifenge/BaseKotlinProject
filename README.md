@@ -1,5 +1,5 @@
 # BaseKotlinProject
-base project design by kotlin
+base project design by kotlin   
 分支【mvvm】是本分支使用mvvm的改版,带基本Demo示例
 ## 使用
 ### 引用工程
@@ -12,7 +12,8 @@ allprojects {
         maven { url 'https://jitpack.io' }
     }
 }
-```
+```      
+把项目中的【extension.gradle】文件拷到工程目录   
 在app目录中的build.gradle加入
 ```
 dependencies {
@@ -53,6 +54,7 @@ dependencies {
 ├─widget                自定义控件类
 ```
 ## proguard-rules.pro 混淆文件的
+> 如果引用了FreeProguard，可以减少很多第三方的混淆配置
 ```
 #------------------------------------------主项目混淆规则----------------------------------------------
 #实体类不参与混淆

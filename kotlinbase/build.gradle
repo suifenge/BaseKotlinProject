@@ -2,10 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply from: 'extension.gradle'
 
-def config = ext
-def lib = ext.libs
+def config = rootProject.ext
+def lib = rootProject.ext.libs
 
 android {
     compileSdkVersion config.compileSdkVersion

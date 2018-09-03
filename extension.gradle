@@ -37,6 +37,7 @@ ext {
             BaseRecyclerViewAdapterHelper : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
             ConvenientBanner     : 'com.bigkoo:ConvenientBanner:2.1.4',                             //轮播图
             AutoLayout           : 'com.zhy:autolayout:1.4.5',
-            GreenDao             : 'org.greenrobot:greendao:3.2.2'                                  //GreenDao数据库
+            GreenDao             : 'org.greenrobot:greendao:3.2.2',                                  //GreenDao数据库
+            FreeProGuard         : 'com.blankj:free-proguard:0.0.7',                                //包含市面上比较主流的库的混淆配置
     ]
 }
