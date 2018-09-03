@@ -3,9 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable
-            name="demoViewModel"
-            type="com.suifeng.kotlin.baseproject.vm.DemoViewModel"/>
+
     </data>
 
     <LinearLayout
@@ -30,6 +28,13 @@
             android:layout_height="55dp"
             android:textAllCaps="false"
             android:text="Fragment例子"/>
+
+        <Button
+            android:id="@+id/btn_multi_adapter"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:textAllCaps="false"
+            android:text="MultiBaseBindingAdapter"/>
     </LinearLayout>
 
 </layout>

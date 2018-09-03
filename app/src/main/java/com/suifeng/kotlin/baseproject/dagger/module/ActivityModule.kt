@@ -36,6 +36,10 @@ internal abstract class ActivityModule {
     @ContributesAndroidInjector(modules = [ViewModelModule::class])
     internal abstract fun contributeFragmentActivity(): FragmentActivity
 
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [ViewModelModule::class])
+    internal abstract fun contributeMultiActivity(): MultiActivity
+
     @FragmentScope
     @ContributesAndroidInjector(modules = [ViewModelModule::class, FragmentModule::class])
     internal abstract fun contributeFragment(): DemoFragment

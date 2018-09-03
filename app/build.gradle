@@ -39,5 +39,4 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:2.16"
     kapt "com.alibaba:arouter-compiler:1.1.4"
     implementation lib.SmartRefreshLayout
-    implementation lib.BaseRecyclerViewAdapterHelper
 }

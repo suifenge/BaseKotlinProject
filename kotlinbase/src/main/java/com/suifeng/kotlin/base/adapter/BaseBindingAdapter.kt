@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import java.lang.Exception
 
+/**
+ * 简单对DataBinding进行封装的adapter
+ */
 abstract class BaseBindingAdapter<T, B : ViewDataBinding>(
         context: Context,
         private val layoutID: Int,

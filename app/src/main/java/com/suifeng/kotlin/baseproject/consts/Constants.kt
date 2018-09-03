@@ -17,6 +17,8 @@ interface Constants {
 
         const val MEI_TU_API = "meituApi"
 
+        const val NEWS_API = "journalismApi"
+
         //以上api全部来源与网络
     }
 }

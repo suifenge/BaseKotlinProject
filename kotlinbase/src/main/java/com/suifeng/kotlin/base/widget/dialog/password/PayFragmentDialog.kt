@@ -13,8 +13,6 @@ import android.widget.TextView
 import com.suifeng.kotlin.base.R
 
 /**
- * @author: xiong
- * @time: 2018/05/04
  * @说明: 密码键盘DiaLog
  */
 class PayFragmentDialog : DialogFragment(), View.OnClickListener {

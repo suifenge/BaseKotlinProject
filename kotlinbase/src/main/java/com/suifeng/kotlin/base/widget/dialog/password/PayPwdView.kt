@@ -14,8 +14,6 @@ import com.suifeng.kotlin.base.R
 import java.util.*
 
 /**
- * @author: xiong
- * @time: 2018/05/04
  * @说明: 引用网上的一位朋友的类，具体出处找不到了
  */
 class PayPwdView : View {

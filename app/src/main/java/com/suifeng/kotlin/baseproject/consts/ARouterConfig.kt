@@ -13,5 +13,6 @@ interface ARouterConfig {
         const val AR_PATH_NET = "/main/net"
         const val AR_PATH_RECYCLER = "/main/recycler"
         const val AR_PATH_FRAGMENT = "/main/fragment"
+        const val AR_PATH_MULTI = "/main/multi"
     }
 }

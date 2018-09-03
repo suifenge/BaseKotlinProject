@@ -9,7 +9,6 @@ import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import com.suifeng.kotlin.baseproject.databinding.ActivityNetBinding
 import com.suifeng.kotlin.baseproject.ex.setToolbarTitle
 import com.suifeng.kotlin.baseproject.vm.NetViewModel
-import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
@@ -19,7 +18,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Route(path = ARouterConfig.AR_PATH_NET)
-class NetActivity @Inject constructor(): BaseActivity<ActivityNetBinding>(R.layout.activity_net,
+class NetActivity: BaseActivity<ActivityNetBinding>(R.layout.activity_net,
     R.id.btn_get_weather
 ) {
 

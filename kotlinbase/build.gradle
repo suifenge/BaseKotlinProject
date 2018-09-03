@@ -56,10 +56,11 @@ dependencies {
     api lib.AutoLayout
     api lib.Glide
     kapt lib.GlideCompiler
+    api lib.ARouterApi
+    api lib.BaseRecyclerViewAdapterHelper
     //mvvm
     api lib.ArchLifecycle
     api lib.Dagger2
     api lib.Dagger2Android
     api lib.Dagger2AndroidSupport
-    api lib.ARouterApi
 }

@@ -16,7 +16,7 @@ import com.suifeng.kotlin.baseproject.databinding.ActivityDemoBinding
 @Route(path = ARouterConfig.AR_PATH_DEMO)
 class DemoActivity: BaseActivity<ActivityDemoBinding>(
         R.layout.activity_demo,
-        R.id.btn_recycler_view, R.id.btn_net, R.id.btn_fragment
+        R.id.btn_recycler_view, R.id.btn_net, R.id.btn_fragment, R.id.btn_multi_adapter
 ) {
 
     override fun init() {
@@ -31,6 +31,7 @@ class DemoActivity: BaseActivity<ActivityDemoBinding>(
             R.id.btn_recycler_view -> ARouter.getInstance().build(ARouterConfig.AR_PATH_RECYCLER).navigation(this)
             R.id.btn_net -> ARouter.getInstance().build(ARouterConfig.AR_PATH_NET).navigation(this)
             R.id.btn_fragment -> ARouter.getInstance().build(ARouterConfig.AR_PATH_FRAGMENT).navigation(this)
+            R.id.btn_multi_adapter -> ARouter.getInstance().build(ARouterConfig.AR_PATH_MULTI).navigation(this)
         }
     }
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.suifeng.kotlin.base.adapter.BaseBindingAdapter;
 import com.suifeng.kotlin.base.adapter.CommonAdapter;
+import com.suifeng.kotlin.base.adapter.MultiBaseBindingAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,10 @@ public class ListBinding {
         } else if (adapter instanceof CommonAdapter) {
             CommonAdapter adt = (CommonAdapter) adapter;
             ArrayList oldData = adt.getData();
+            diffBindAdapterData(adapter, oldData, data);
+        } else if(adapter instanceof MultiBaseBindingAdapter) {
+            MultiBaseBindingAdapter adt = (MultiBaseBindingAdapter) adapter;
+            List oldData = adt.getData();
             diffBindAdapterData(adapter, oldData, data);
         }
     }

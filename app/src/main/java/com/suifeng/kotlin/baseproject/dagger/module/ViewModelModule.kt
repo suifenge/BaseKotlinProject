@@ -50,4 +50,9 @@ internal abstract class ViewModelModule {
     @ViewModelKey(FragDemoViewModel::class)
     abstract fun bindFragDemoViewModel(viewModel: FragDemoViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(MultiViewModel::class)
+    abstract fun bindMultiViewModel(viewModel: MultiViewModel): ViewModel
+
 }

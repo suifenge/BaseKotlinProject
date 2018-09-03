@@ -1,5 +1,6 @@
 package com.suifeng.kotlin.baseproject.data.api
 
+import com.suifeng.kotlin.baseproject.bean.NewsBean
 import com.suifeng.kotlin.baseproject.bean.PictureBean
 import com.suifeng.kotlin.baseproject.bean.WeatherBean
 import com.suifeng.kotlin.baseproject.consts.Constants
@@ -22,4 +23,7 @@ interface ICommonApi {
     //获取美图
     @GET(Constants.MEI_TU_API)
     fun getMeitu(@Query("page") page: Int): Observable<Response<PictureBean>>
+
+    @GET(Constants.NEWS_API)
+    fun getNews(): Observable<Response<NewsBean>>
 }

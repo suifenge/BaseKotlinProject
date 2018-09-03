@@ -7,9 +7,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
-import com.ssf.framework.widget.dialog.ProgressDialogFragment
 import com.ssf.framework.widget.ex.IToast
 import com.suifeng.kotlin.base.widget.dialog.HintDialog
+import com.suifeng.kotlin.base.widget.dialog.ProgressDialogFragment
 import es.dmoral.toasty.Toasty
 
 
