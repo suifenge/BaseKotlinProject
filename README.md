@@ -31,16 +31,7 @@ dependencies {
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
-> 本库使用了AutoLayout，必须设置UI设计稿的设计尺寸
-```
-<!-- 声明UI设计稿的尺寸 -->
-<meta-data
-    android:name="design_width"
-    android:value="750"/>
-<meta-data
-    android:name="design_height"
-    android:value="1334"/>
-```
+
 ## Lib工程目录结构
 ```
 ├─adapter               对RecyclerView的adapter的封装         

@@ -25,22 +25,18 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     api lib.Appcompat
     api lib.Material
     api lib.SupportV4
     api lib.Recyclerview
     api lib.ConstraintLayout
     api lib.Multidex
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api lib.Corektx
-    api (lib.RxLifeCycle) {
-        exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
-    }
+    api lib.RxLifeCycle
     api lib.Retrofit
-    api (lib.RetrofitAdapter) {
-        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
-    }
+    api lib.RetrofitAdapter
     api lib.RetrofitScalars
     api (lib.RetrofitGson) {
         exclude group: 'com.google.code.gson', module: 'gson'
