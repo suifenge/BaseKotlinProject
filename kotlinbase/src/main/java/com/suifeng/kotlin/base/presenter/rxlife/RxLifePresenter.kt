@@ -1,9 +1,9 @@
 package com.suifeng.kotlin.base.presenter.rxlife
 
-import com.trello.rxlifecycle2.LifecycleTransformer
-import com.trello.rxlifecycle2.RxLifecycle
-import io.reactivex.Observable
-import io.reactivex.functions.Function
+import com.trello.rxlifecycle4.LifecycleTransformer
+import com.trello.rxlifecycle4.RxLifecycle
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.Function
 
 /**
  * @author ljc

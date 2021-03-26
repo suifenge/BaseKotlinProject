@@ -8,14 +8,9 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.EditText
 import com.suifeng.kotlin.base.R
+import com.suifeng.kotlin.base.utils.other.DensityUtils
 import com.suifeng.kotlin.base.utils.other.SimpleTextWatcher
-import com.zhy.autolayout.utils.AutoUtils
 
-/**
- * @author yedanmin
- * @data 2018/4/27
- * @describe
- */
 public inline fun EditText.text(): String = text.toString().trim()
 
 public inline fun EditText.isEmpty(): Boolean = text.toString().trim().isEmpty()
@@ -53,7 +48,7 @@ public inline fun View.bindKeyboardLayout(target: View) {
         } else {
             false
         }
-        if (layoutInvisibleHeight > AutoUtils.getPercentHeightSize(150)) {
+        if (layoutInvisibleHeight > DensityUtils.dip2px(target.context, 150f)) {
             if (!isShowKeyBoard) {
                 this.tag = true
                 val location = IntArray(2)
@@ -109,7 +104,7 @@ public inline fun EditText.bindClearButton(clearView: View?, showEtView: View? =
         }
 
     })
-    this.setOnFocusChangeListener({ v, hasFocus ->
+    this.setOnFocusChangeListener{ _, hasFocus ->
         if (!hasFocus) {
             clearView?.visibility = View.INVISIBLE
         } else {
@@ -117,5 +112,5 @@ public inline fun EditText.bindClearButton(clearView: View?, showEtView: View? =
                 clearView?.visibility = View.VISIBLE
             }
         }
-    })
+    }
 }

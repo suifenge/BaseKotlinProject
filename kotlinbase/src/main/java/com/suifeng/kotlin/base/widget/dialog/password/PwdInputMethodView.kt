@@ -8,9 +8,7 @@ import android.widget.LinearLayout
 import com.suifeng.kotlin.base.R
 
 /**
- * @author: xiong
- * @time: 2018/05/04
- * @说明: 输入键盘
+ * 输入键盘
  */
 class PwdInputMethodView(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs), View.OnClickListener {
 

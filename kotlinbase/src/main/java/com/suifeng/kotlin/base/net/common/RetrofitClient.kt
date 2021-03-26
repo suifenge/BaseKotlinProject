@@ -24,9 +24,9 @@ class RetrofitClient {
             KLog.i("创建 createRetrofit")
             // 构建 log
             val loggingInterceptor = if (builder.debug) {
-                HttpLoggingInterceptor({
+                HttpLoggingInterceptor {
                     KLog.i(it)
-                })
+                }
             } else {
                 null
             }

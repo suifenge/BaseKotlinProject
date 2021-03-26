@@ -4,20 +4,19 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
 import com.suifeng.kotlin.base.R
+import com.trello.rxlifecycle4.components.support.RxDialogFragment
 
 /**
- * @author: xiong
  * @time: 2018/05/04
  * @说明: 密码键盘DiaLog
  */
-class PayFragmentDialog : DialogFragment(), View.OnClickListener {
+class PayFragmentDialog : RxDialogFragment(), View.OnClickListener {
 
     private var psw_input: PayPwdView? = null
     private var inputCallBack: PayPwdView.InputCallBack? = null

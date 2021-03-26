@@ -1,12 +1,13 @@
 package com.suifeng.kotlin.base.net.common
 
-import android.support.v4.app.FragmentManager
-import com.ssf.framework.net.interfac.IDialog
-import com.ssf.framework.widget.dialog.ProgressDialogFragment
+import androidx.fragment.app.FragmentManager
+import com.suifeng.kotlin.base.net.interfac.IDialog
+import com.suifeng.kotlin.base.widget.dialog.ProgressDialogFragment
 import com.suifeng.kotlin.base.extension.IConfig.Companion.NET_PROGRESS_TAG
 import com.suifeng.kotlin.base.utils.log.KLog
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+
 
 class ProgressSubscriber<T>(
         //上下文对象

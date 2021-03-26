@@ -1,8 +1,9 @@
 package com.suifeng.kotlin.base.utils.log;
 
 
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
 
 import com.suifeng.kotlin.base.utils.log.klog.BaseLog;
 import com.suifeng.kotlin.base.utils.log.klog.FileLog;

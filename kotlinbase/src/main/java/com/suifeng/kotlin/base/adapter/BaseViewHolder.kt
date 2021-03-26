@@ -1,9 +1,8 @@
 package com.suifeng.kotlin.base.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import android.view.View
-import com.zhy.autolayout.utils.AutoUtils
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author ljc
@@ -14,9 +13,7 @@ class BaseViewHolder : RecyclerView.ViewHolder {
 
     private val views = SparseArray<View>()
 
-    constructor(itemView: View?) : super(itemView){
-        AutoUtils.autoSize(itemView)
-    }
+    constructor(itemView: View) : super(itemView)
 
     @Suppress("UNCHECKED_CAST")
     public fun <T : View> get(viewId: Int) : T {

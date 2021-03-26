@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.View
 import com.suifeng.kotlin.base.R
 import com.suifeng.kotlin.base.eventbus.EventCenter
-import com.suifeng.kotlin.base.extension.IConfig
 import com.suifeng.kotlin.base.swipback.SwipeBackActivity
 import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
@@ -14,14 +13,10 @@ import com.suifeng.kotlin.base.utils.netstatus.NetChangeObserver
 import com.suifeng.kotlin.base.utils.netstatus.NetStateReceiver
 import com.suifeng.kotlin.base.utils.netstatus.NetUtils
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
-import com.suifeng.kotlin.base.widget.auto.AutoConstraintLayout
-import com.trello.rxlifecycle2.android.ActivityEvent
-import com.zhy.autolayout.AutoFrameLayout
-import com.zhy.autolayout.AutoLinearLayout
-import com.zhy.autolayout.AutoRelativeLayout
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
+import com.trello.rxlifecycle4.android.ActivityEvent
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableEmitter
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -111,7 +106,7 @@ abstract class BaseActivity(
             }
         }).compose(bindUntilEvent(ActivityEvent.DESTROY))
                 .throttleFirst(500, TimeUnit.MILLISECONDS)
-                .subscribe({onClick(it)})
+                .subscribe {onClick(it)}
     }
 
     open fun initStatusBar() {
@@ -144,13 +139,7 @@ abstract class BaseActivity(
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return when(name) {
-            IConfig.LAYOUT_FRAMELAYOUT      -> AutoFrameLayout(context, attrs)
-            IConfig.LAYOUT_LINEARLAYOUT     -> AutoLinearLayout(context, attrs)
-            IConfig.LAYOUT_RELATIVELAYOUT   -> AutoRelativeLayout(context, attrs)
-            IConfig.LAYOUT_CONSTRAINTLAYOUT -> AutoConstraintLayout(context, attrs)
-            else                            -> super.onCreateView(name, context, attrs)
-        }
+        return super.onCreateView(name, context, attrs)
     }
 
     override fun onDestroy() {

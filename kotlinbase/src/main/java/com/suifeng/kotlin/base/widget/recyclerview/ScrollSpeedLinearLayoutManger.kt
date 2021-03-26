@@ -2,13 +2,13 @@ package com.suifeng.kotlin.base.widget.recyclerview
 
 import android.content.Context
 import android.graphics.PointF
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSmoothScroller
-import android.support.v7.widget.RecyclerView
 import android.util.DisplayMetrics
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 
 /**
- * 可控制速度的  的 LinearLayoutManager
+ * 可控制速度的LinearLayoutManager
  */
 
 class ScrollSpeedLinearLayoutManger(context: Context) : LinearLayoutManager(context) {

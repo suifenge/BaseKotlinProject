@@ -8,7 +8,7 @@ import android.view.ViewGroup
 /**
  * @author ljc
  * @data 2018/6/28
- * @describe
+ * @describe 切换显示View的帮助类,用于切换加载、加载失败、无网络之类的View显示切换
  */
 class VaryViewHelper(view: View) : IVaryViewHelper {
 

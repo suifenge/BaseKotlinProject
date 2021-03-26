@@ -4,14 +4,15 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.suifeng.kotlin.base.R
+import com.trello.rxlifecycle4.components.support.RxDialogFragment
 
 
 /**
@@ -19,7 +20,7 @@ import com.suifeng.kotlin.base.R
  * @data 2018/4/25
  * @describe ios风格HintDialog
  */
-class HintDialog : DialogFragment() {
+class HintDialog : RxDialogFragment() {
     // rootview
     private lateinit var mInflate: View
     // 事件
@@ -46,8 +47,8 @@ class HintDialog : DialogFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mInflate = inflater.inflate(R.layout.layout_dialog_hint, container, true)!!
         // 初始化View
         mInflate.findViewById<TextView>(R.id.dialog_tv_title).text = arguments!!.getString("title")
@@ -72,7 +73,7 @@ class HintDialog : DialogFragment() {
         return mInflate
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         // 销毁回调
         dismissListener(mInflate)

@@ -26,12 +26,14 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api lib.SupportV7
-    api lib.SupportDesign
+    api lib.Appcompat
+    api lib.Material
     api lib.SupportV4
-    api lib.SupportRecyclerviewV7
+    api lib.Recyclerview
+    api lib.ConstraintLayout
     api lib.Multidex
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api lib.Corektx
     api (lib.RxLifeCycle) {
         exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
     }
@@ -50,7 +52,6 @@ dependencies {
     api lib.Gson
     api lib.Toasty
     api lib.EventBus
-    api lib.AutoLayout
     api lib.Glide
     kapt lib.GlideCompiler
 }

@@ -2,18 +2,18 @@ package com.suifeng.kotlin.base.presenter
 
 import com.suifeng.kotlin.base.presenter.rxlife.PresenterEvent
 import com.suifeng.kotlin.base.presenter.rxlife.RxLifePresenter
-import com.trello.rxlifecycle2.LifecycleProvider
-import com.trello.rxlifecycle2.LifecycleTransformer
-import com.trello.rxlifecycle2.RxLifecycle
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
+import com.trello.rxlifecycle4.LifecycleProvider
+import com.trello.rxlifecycle4.LifecycleTransformer
+import com.trello.rxlifecycle4.RxLifecycle
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 /**
  * @author ljc
  * @data 2018/6/20
  * @describe
  */
-class BasePresenter<T : IBaseView> : IPresenter<T>, LifecycleProvider<PresenterEvent>{
+class BasePresenter<T : IBaseView> : IPresenter<T>, LifecycleProvider<PresenterEvent> {
 
     var mRootView: T? = null
         private set

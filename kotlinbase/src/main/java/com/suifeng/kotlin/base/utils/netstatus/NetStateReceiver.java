@@ -33,7 +33,7 @@ public class NetStateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         mBroadcastReceiver = NetStateReceiver.this;
-        if (intent.getAction().equalsIgnoreCase(ANDROID_NET_CHANGE_ACTION) || intent.getAction().equalsIgnoreCase(CUSTOM_ANDROID_NET_CHANGE_ACTION)) {
+        if (ANDROID_NET_CHANGE_ACTION.equalsIgnoreCase(intent.getAction()) || CUSTOM_ANDROID_NET_CHANGE_ACTION.equalsIgnoreCase(intent.getAction())) {
             if (!NetUtils.isNetworkAvailable(context)) {
                 Log.d(TAG, "<--- network disconnected --->");
                 isNetAvailable = false;

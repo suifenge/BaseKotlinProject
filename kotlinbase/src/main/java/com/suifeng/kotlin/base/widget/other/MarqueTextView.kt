@@ -2,8 +2,8 @@ package com.suifeng.kotlin.base.widget.other
 
 import android.content.Context
 import android.graphics.Canvas
-import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * 滚动文字
@@ -12,7 +12,7 @@ class MarqueTextView : AppCompatTextView {
 
 
     private val mSb = StringBuilder()
-    var isInit = true
+    private var isInit = true
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 

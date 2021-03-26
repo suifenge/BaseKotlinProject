@@ -2,12 +2,12 @@ package com.suifeng.kotlin.base.extension
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
-import com.ssf.framework.widget.dialog.ProgressDialogFragment
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.suifeng.kotlin.base.widget.dialog.ProgressDialogFragment
 import com.suifeng.kotlin.base.widget.dialog.HintDialog
 import es.dmoral.toasty.Toasty
 
@@ -43,7 +43,7 @@ public inline fun AppCompatActivity.showProgressDialog(isCancelable: Boolean = f
 public inline fun Fragment.showProgressDialog(isCancelable: Boolean = false, noinline dismissCallback: () -> Unit = {}): ProgressDialogFragment {
     val dialog = ProgressDialogFragment()
     dialog.isCancelable = isCancelable
-    dialog.show(this.fragmentManager, IConfig.PROGRESS_TAG)
+    dialog.show(this.fragmentManager!!, IConfig.PROGRESS_TAG)
     return dialog
 }
 
