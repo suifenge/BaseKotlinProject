@@ -1,23 +1,27 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.databinding.ObservableArrayList
+import android.app.Application
+import androidx.databinding.ObservableArrayList
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.net.ex.convert
-import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.bean.NewsBean
 import com.suifeng.kotlin.baseproject.data.NetRepository
+import com.suifeng.kotlin.baseproject.data.RetrofitFactory
 import com.suifeng.kotlin.baseproject.ex.responseError
-import javax.inject.Inject
 
 /**
  * @author ljc
  * @data 2018/9/3
  * @describe
  */
-class MultiViewModel @Inject constructor(application: CustomApplication, private val mNetRepository: NetRepository): BaseViewModel(application) {
+class MultiViewModel constructor(application: Application): BaseViewModel(application) {
 
     val newsList = ObservableArrayList<NewsBean.Data.DataBean>()
     private var newsBean: NewsBean? = null
+
+    private val mNetRepository by lazy {
+        NetRepository(RetrofitFactory.commonApi)
+    }
 
     fun getNews() {
         mNetRepository.getNews()

@@ -1,10 +1,9 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.databinding.ObservableArrayList
+import android.app.Application
+import androidx.databinding.ObservableArrayList
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
-import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.bean.DataBean
-import javax.inject.Inject
 
 /**
  * @author ljc
@@ -12,7 +11,7 @@ import javax.inject.Inject
  * @describe
  */
 
-class RecyclerViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application) {
+class RecyclerViewModel constructor(application: Application): BaseViewModel(application) {
 
     val dataList = ObservableArrayList<DataBean>()
 

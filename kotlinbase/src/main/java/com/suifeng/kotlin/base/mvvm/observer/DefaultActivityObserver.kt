@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.base.mvvm.observer
 
-import android.arch.lifecycle.Observer
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import com.suifeng.kotlin.base.mvvm.livedata.ActivityLiveData
 
 

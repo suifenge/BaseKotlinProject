@@ -11,7 +11,7 @@ interface Constants {
 
     companion object {
 
-        const val BASE_URL = "https://www.apiopen.top/"
+        const val BASE_URL = "http://www.apiopen.top/"
 
         const val WEATHER_API = "weatherApi"
 

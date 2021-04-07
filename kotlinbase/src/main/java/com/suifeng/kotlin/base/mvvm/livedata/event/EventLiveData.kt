@@ -1,8 +1,7 @@
 package com.suifeng.kotlin.base.mvvm.livedata.event
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.Observer
-
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 
 /**
  * 用来发送事件的LiveData，不管什么情况始终只发送一次事件。
@@ -17,11 +16,11 @@ open class EventLiveData<T>: SubscribeLiveData<Event<T>>() {
     /**
      * 不能直接创建监听，需要通过ObserverEvent方法
      */
-    override fun observe(owner: LifecycleOwner, observer: Observer<Event<T>>) {
+    override fun observe(owner: LifecycleOwner, observer: Observer<in Event<T>>) {
         throw IllegalAccessException("can not access this function,please use ObserverEvent")
     }
 
-    override fun observeForever(observer: Observer<Event<T>>) {
+    override fun observeForever(observer: Observer<in Event<T>>) {
         throw IllegalAccessException("can not access this function,please use observeEventForever")
     }
 

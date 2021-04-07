@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import com.ssf.framework.net.interfac.IDialog
+import com.suifeng.kotlin.base.net.interfac.IDialog
 import com.suifeng.kotlin.base.net.common.ProgressSubscriber
 import com.suifeng.kotlin.base.net.common.ResponseListener
 import com.suifeng.kotlin.base.net.common.ResponseSubscriber

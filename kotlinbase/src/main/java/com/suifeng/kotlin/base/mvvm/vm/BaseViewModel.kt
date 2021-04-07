@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.base.mvvm.vm
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import com.suifeng.kotlin.base.lifecycle.RxLifecycleViewModel
 import com.suifeng.kotlin.base.lifecycle.ViewModelEvent
 import com.suifeng.kotlin.base.mvvm.livedata.ActivityLiveData

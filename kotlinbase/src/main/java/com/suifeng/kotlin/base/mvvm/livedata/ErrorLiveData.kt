@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.base.mvvm.livedata
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.suifeng.kotlin.base.mvvm.livedata.ErrorLiveData.Error
 import com.suifeng.kotlin.base.mvvm.livedata.event.EventLiveData
 

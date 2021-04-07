@@ -1,34 +1,23 @@
 package com.suifeng.kotlin.base.ui.activity
 
-import android.arch.lifecycle.ViewModelProvider
-import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.util.AttributeSet
 import android.view.View
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
+import com.suifeng.kotlin.base.BaseApplication
 import com.suifeng.kotlin.base.R
-import com.suifeng.kotlin.base.extension.IConfig
+import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
 import com.suifeng.kotlin.base.swipback.SwipeBackActivity
 import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
-import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
-import com.suifeng.kotlin.base.widget.auto.AutoConstraintLayout
 import com.trello.rxlifecycle2.android.ActivityEvent
-import com.zhy.autolayout.AutoFrameLayout
-import com.zhy.autolayout.AutoLinearLayout
-import com.zhy.autolayout.AutoRelativeLayout
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 /**
  * @author ljc
@@ -45,24 +34,13 @@ abstract class BaseActivity<V: ViewDataBinding>(
     //状态栏颜色
     private val statusBarColor: Int = 0,
     private val statusBarAlpha: Int = 0
-) : SwipeBackActivity(), View.OnClickListener, HasSupportFragmentInjector{
+) : SwipeBackActivity(), View.OnClickListener {
 
     protected lateinit var binding: V
-
-    @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var appViewModelProvider: ViewModelProvider
 
     protected val viewModelProvider: ViewModelProvider by lazy {
         createViewModelProvider()
     }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(toggleOverridePendingTransition()) {
@@ -75,7 +53,6 @@ abstract class BaseActivity<V: ViewDataBinding>(
                 FADE         -> { overridePendingTransition(R.anim.fade_in, R.anim.fade_out) }
             }
         }
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         AppManager.get().addActivity(this)
         initViewDataBinding()
@@ -98,6 +75,7 @@ abstract class BaseActivity<V: ViewDataBinding>(
         binding.setLifecycleOwner(this) //绑定LiveData并对Binding设置LifecycleOwner
     }
 
+    @SuppressLint("CheckResult")
     private fun setClickViewId() {
         Observable.create(object : ObservableOnSubscribe<View>, View.OnClickListener {
             lateinit var emitter: ObservableEmitter<View>
@@ -115,7 +93,7 @@ abstract class BaseActivity<V: ViewDataBinding>(
             }
         }).compose(bindUntilEvent(ActivityEvent.DESTROY))
                 .throttleFirst(500, TimeUnit.MILLISECONDS)
-                .subscribe({ onClick(it) })
+                .subscribe{ onClick(it) }
     }
 
     open fun initStatusBar() {
@@ -143,16 +121,6 @@ abstract class BaseActivity<V: ViewDataBinding>(
         }
     }
 
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return when(name) {
-            IConfig.LAYOUT_FRAMELAYOUT      -> AutoFrameLayout(context, attrs)
-            IConfig.LAYOUT_LINEARLAYOUT     -> AutoLinearLayout(context, attrs)
-            IConfig.LAYOUT_RELATIVELAYOUT   -> AutoRelativeLayout(context, attrs)
-            IConfig.LAYOUT_CONSTRAINTLAYOUT -> AutoConstraintLayout(context, attrs)
-            else                            -> super.onCreateView(name, context, attrs)
-        }
-    }
-
     override fun onClick(view: View) {
 
     }
@@ -166,7 +134,7 @@ abstract class BaseActivity<V: ViewDataBinding>(
     open fun getOverridePendingTransitionMode() : TransitionMode? { return null }
 
     private fun createViewModelProvider(): ViewModelProvider {
-        return SuperViewModelProvider(this, viewModelFactory, appViewModelProvider)
+        return SuperViewModelProvider(this, BaseApplication.viewModelFactory, BaseApplication.appViewModelProvider)
     }
 
     enum class TransitionMode {

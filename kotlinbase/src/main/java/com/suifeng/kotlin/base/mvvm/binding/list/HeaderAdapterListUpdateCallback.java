@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.base.mvvm.binding.list;
 
-import android.support.v7.util.ListUpdateCallback;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.ListUpdateCallback;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.suifeng.kotlin.base.adapter.BaseBindingAdapter;
 

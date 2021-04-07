@@ -1,17 +1,17 @@
 package com.suifeng.kotlin.base.adapter
 
-import android.support.annotation.LayoutRes
-import android.support.annotation.NonNull
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author ljc
  * @data 2018/6/22
- * @describe
+ * @describe 没有使用DataBinding来进行对Adapter封装
  */
 abstract class CommonAdapter<T>(
         @LayoutRes private val layoutId: Int,

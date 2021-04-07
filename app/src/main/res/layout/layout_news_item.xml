@@ -10,7 +10,7 @@
             type="com.suifeng.kotlin.baseproject.bean.NewsBean.Data.DataBean"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
@@ -41,7 +41,7 @@
             android:layout_marginTop="5dp"
             android:text="@{news.digest}"
             tools:text="网易"/>
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_img"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,5 +49,5 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="5dp"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

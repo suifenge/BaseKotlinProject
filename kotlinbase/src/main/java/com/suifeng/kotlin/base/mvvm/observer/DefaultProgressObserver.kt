@@ -1,9 +1,9 @@
 package com.suifeng.kotlin.base.mvvm.observer
 
 import android.app.ProgressDialog
-import android.arch.lifecycle.Observer
-import android.support.v4.app.FragmentActivity
 import android.view.View
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import com.suifeng.kotlin.base.mvvm.livedata.ProgressLiveData
 
 class DefaultProgressObserver(val owner: FragmentActivity) : Observer<ProgressLiveData.Progress> {

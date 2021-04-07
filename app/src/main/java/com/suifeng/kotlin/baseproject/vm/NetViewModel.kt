@@ -1,26 +1,29 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.databinding.ObservableField
+import android.app.Application
 import android.text.TextUtils
+import androidx.databinding.ObservableField
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.net.ex.convert
-import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.data.NetRepository
+import com.suifeng.kotlin.baseproject.data.RetrofitFactory
 import com.suifeng.kotlin.baseproject.ex.responseError
 import es.dmoral.toasty.Toasty
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * @author ljc
  * @data 2018/8/13
  * @describe
  */
-@Singleton
-class NetViewModel @Inject constructor(application: CustomApplication, private val mNetRepository: NetRepository): BaseViewModel(application) {
+
+class NetViewModel constructor(application: Application): BaseViewModel(application) {
 
     val cityName = ObservableField<String>()
     val weather = ObservableField<String>()
+
+    private val mNetRepository by lazy {
+        NetRepository(RetrofitFactory.commonApi)
+    }
 
     fun getWeather() {
         if(TextUtils.isEmpty(cityName.get())) {

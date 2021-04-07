@@ -2,8 +2,8 @@ package com.suifeng.kotlin.base.widget.other
 
 import android.content.Context
 import android.graphics.Canvas
-import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * 滚动文字

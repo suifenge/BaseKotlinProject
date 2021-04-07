@@ -4,12 +4,12 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.DialogFragment
 import com.suifeng.kotlin.base.R
 
 
@@ -27,8 +27,8 @@ class ProgressDialogFragment : DialogFragment(){
     private var isInitLayout = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mInflate = inflater.inflate(R.layout.layout_dialog_loading,container,true)
         isInitLayout = mInflate.findViewById<View>(R.id.net_tv_message) != null
         return mInflate
@@ -48,7 +48,7 @@ class ProgressDialogFragment : DialogFragment(){
         }
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         dismissCallback()
     }

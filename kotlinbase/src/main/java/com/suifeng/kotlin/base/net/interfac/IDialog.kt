@@ -1,4 +1,4 @@
-package com.ssf.framework.net.interfac
+package com.suifeng.kotlin.base.net.interfac
 
 
 /**

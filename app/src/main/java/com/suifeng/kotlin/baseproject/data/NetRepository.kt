@@ -6,7 +6,6 @@ import com.suifeng.kotlin.baseproject.bean.WeatherBean
 import com.suifeng.kotlin.baseproject.data.api.ICommonApi
 import io.reactivex.Observable
 import retrofit2.Response
-import javax.inject.Inject
 
 /**
  * @author ljc
@@ -14,7 +13,7 @@ import javax.inject.Inject
  * @describe
  */
 
-class NetRepository @Inject constructor(private val commonApi: ICommonApi) {
+class NetRepository constructor(private val commonApi: ICommonApi) {
 
     fun getWeather(city: String): Observable<Response<WeatherBean>> {
         return commonApi.getWeather(city)

@@ -1,22 +1,17 @@
 package com.suifeng.kotlin.base.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import android.view.View
-import com.zhy.autolayout.utils.AutoUtils
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author ljc
  * @data 2018/6/22
  * @describe
  */
-class BaseViewHolder : RecyclerView.ViewHolder {
+open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val views = SparseArray<View>()
-
-    constructor(itemView: View?) : super(itemView){
-        AutoUtils.autoSize(itemView)
-    }
 
     @Suppress("UNCHECKED_CAST")
     public fun <T : View> get(viewId: Int) : T {

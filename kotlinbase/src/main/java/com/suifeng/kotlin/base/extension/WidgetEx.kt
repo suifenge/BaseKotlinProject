@@ -1,24 +1,16 @@
 package com.suifeng.kotlin.base.extension
 
-import android.content.Context
 import android.graphics.Rect
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import com.suifeng.kotlin.base.R
+import com.suifeng.kotlin.base.utils.other.DensityUtils
 import com.suifeng.kotlin.base.utils.other.SimpleTextWatcher
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import com.trello.rxlifecycle2.components.support.RxDialogFragment
-import com.trello.rxlifecycle2.components.support.RxFragment
-import com.zhy.autolayout.utils.AutoUtils
 
 /**
- * @author yedanmin
  * @data 2018/4/27
  * @describe
  */
@@ -49,7 +41,7 @@ public inline fun EditText.setMax(max: Int){
  * @param target 目标对象，不会覆盖这个布局
  */
 public inline fun View.bindKeyboardLayout(target: View) {
-    this.viewTreeObserver.addOnGlobalLayoutListener(ViewTreeObserver.OnGlobalLayoutListener {
+    this.viewTreeObserver.addOnGlobalLayoutListener {
         val rect = Rect()
         this.getWindowVisibleDisplayFrame(rect)
         val layoutInvisibleHeight = this.rootView.height - rect.bottom
@@ -59,7 +51,7 @@ public inline fun View.bindKeyboardLayout(target: View) {
         } else {
             false
         }
-        if (layoutInvisibleHeight > AutoUtils.getPercentHeightSize(150)) {
+        if (layoutInvisibleHeight > DensityUtils.dip2px(target.context,150f)) {
             if (!isShowKeyBoard) {
                 this.tag = true
                 val location = IntArray(2)
@@ -73,7 +65,7 @@ public inline fun View.bindKeyboardLayout(target: View) {
                 this.tag = false
             }
         }
-    })
+    }
 }
 
 /**
@@ -115,7 +107,7 @@ public inline fun EditText.bindClearButton(clearView: View?, showEtView: View? =
         }
 
     })
-    this.setOnFocusChangeListener({ v, hasFocus ->
+    this.setOnFocusChangeListener { _, hasFocus ->
         if (!hasFocus) {
             clearView?.visibility = View.INVISIBLE
         } else {
@@ -123,5 +115,5 @@ public inline fun EditText.bindClearButton(clearView: View?, showEtView: View? =
                 clearView?.visibility = View.VISIBLE
             }
         }
-    })
+    }
 }

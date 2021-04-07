@@ -1,11 +1,11 @@
 package com.suifeng.kotlin.base.widget.recyclerview
 
 import android.graphics.Rect
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 /**
  * @desc 往RecyclerView底部添加一些marginBottom
@@ -28,7 +28,7 @@ class BottomMarginDecoration(private val marginBottom: Int) : RecyclerView.ItemD
     private fun isLastRaw(parent: RecyclerView, pos: Int, spanCount: Int): Boolean {
         val layoutManager = parent.layoutManager
         val adapter = parent.adapter
-        var childCount = adapter.itemCount
+        var childCount = adapter!!.itemCount
         if (layoutManager is GridLayoutManager) {
             childCount -= childCount % spanCount
             if (pos >= childCount) {
@@ -53,7 +53,7 @@ class BottomMarginDecoration(private val marginBottom: Int) : RecyclerView.ItemD
     }
 
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         val isLast = isLastRaw(parent, (view.layoutParams as RecyclerView.LayoutParams).viewLayoutPosition, this.getSpanCount(parent))
         if (isLast) {
             outRect.bottom = marginBottom

@@ -1,22 +1,21 @@
 package com.suifeng.kotlin.base.ui.fragment
 
-import android.arch.lifecycle.ViewModelProvider
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.IdRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
+import com.suifeng.kotlin.base.BaseApplication
 import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
 import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.components.support.RxFragment
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 /**
  * @author ljc
@@ -31,11 +30,6 @@ abstract class BaseFragment<V: ViewDataBinding>(
     private var mRootView: View? = null
     private var isInit = false
     protected lateinit var binding: V
-    @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var appViewModelProvider: ViewModelProvider
 
     protected val viewModelProvider: ViewModelProvider by lazy {
         createViewModelProvider()
@@ -43,7 +37,6 @@ abstract class BaseFragment<V: ViewDataBinding>(
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if(mRootView == null) {
-            AndroidSupportInjection.inject(this)
             binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
             binding.setLifecycleOwner(this)
             mRootView = binding.root
@@ -101,6 +94,6 @@ abstract class BaseFragment<V: ViewDataBinding>(
     }
 
     private fun createViewModelProvider(): ViewModelProvider{
-        return SuperViewModelProvider(this, viewModelFactory, appViewModelProvider)
+        return SuperViewModelProvider(this, BaseApplication.viewModelFactory, BaseApplication.appViewModelProvider)
     }
 }

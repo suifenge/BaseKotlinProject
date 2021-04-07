@@ -8,11 +8,6 @@ package com.suifeng.kotlin.base.extension
 
 interface IConfig{
     companion object {
-        //AutoLayout
-        const val LAYOUT_LINEARLAYOUT = "LinearLayout"
-        const val LAYOUT_FRAMELAYOUT = "FrameLayout"
-        const val LAYOUT_RELATIVELAYOUT = "RelativeLayout"
-        const val LAYOUT_CONSTRAINTLAYOUT = "android.support.constraint.ConstraintLayout"
         //SharedPreference
         const val SHARED_PREFERENCES_FILE_NAME = "Shared_Preferences_FILE_NAME"
         //dialog相关

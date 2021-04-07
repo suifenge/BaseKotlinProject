@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.support.v7.widget.Toolbar
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.baseproject.R
@@ -9,14 +9,12 @@ import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import com.suifeng.kotlin.baseproject.databinding.ActivityNetBinding
 import com.suifeng.kotlin.baseproject.ex.setToolbarTitle
 import com.suifeng.kotlin.baseproject.vm.NetViewModel
-import javax.inject.Singleton
 
 /**
  * @author ljc
  * @data 2018/8/13
  * @describe
  */
-@Singleton
 @Route(path = ARouterConfig.AR_PATH_NET)
 class NetActivity: BaseActivity<ActivityNetBinding>(R.layout.activity_net,
     R.id.btn_get_weather

@@ -1,28 +1,32 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.databinding.ObservableArrayList
+import android.app.Application
+import androidx.databinding.ObservableArrayList
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.net.ex.convert
-import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.bean.PictureBean
 import com.suifeng.kotlin.baseproject.data.NetRepository
+import com.suifeng.kotlin.baseproject.data.RetrofitFactory
 import com.suifeng.kotlin.baseproject.event.RefreshLiveData
 import com.suifeng.kotlin.baseproject.ex.responseError
-import javax.inject.Inject
 
 /**
  * @author ljc
  * @data 2018/8/13
  * @describe
  */
-class FragDemoViewModel @Inject constructor(application: CustomApplication, private val netRepository: NetRepository): BaseViewModel(application) {
+class FragDemoViewModel constructor(application: Application): BaseViewModel(application) {
 
     val pictureData = ObservableArrayList<PictureBean.Data>()
     val refresh = RefreshLiveData()
     var page = 1
 
+    private val mNetRepository by lazy {
+        NetRepository(RetrofitFactory.commonApi)
+    }
+
     fun getPictures(page: Int = 1) {
-        netRepository.getPicture(page)
+        mNetRepository.getPicture(page)
                 .convert(success = {
                     if(page == 1) {
                         pictureData.clear()

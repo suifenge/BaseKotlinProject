@@ -1,16 +1,15 @@
 package com.suifeng.kotlin.baseproject.fragment
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.suifeng.kotlin.base.ui.fragment.BaseFragment
 import com.suifeng.kotlin.baseproject.R
 import com.suifeng.kotlin.baseproject.adapter.PictureAdapter
 import com.suifeng.kotlin.baseproject.databinding.FragDemoBinding
 import com.suifeng.kotlin.baseproject.event.RefreshLiveData
 import com.suifeng.kotlin.baseproject.vm.FragDemoViewModel
-import javax.inject.Inject
 
 /**
  * @author ljc
@@ -19,9 +18,6 @@ import javax.inject.Inject
  */
 class DemoFragment: BaseFragment<FragDemoBinding>(R.layout.frag_demo) {
 
-    @Inject
-    lateinit var mAdapter: PictureAdapter
-
     private val viewModel by lazy {
         viewModelProvider.get(FragDemoViewModel::class.java)
     }
@@ -29,7 +25,7 @@ class DemoFragment: BaseFragment<FragDemoBinding>(R.layout.frag_demo) {
     override fun init(rootView: View?, savedInstanceState: Bundle?) {
         binding.fragDemoViewModel = viewModel
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        binding.recyclerView.adapter = mAdapter
+        binding.recyclerView.adapter = PictureAdapter(activity!!)
         viewModel.getPictures()
         binding.refreshLayout.setOnRefreshListener {
             viewModel.refresh()

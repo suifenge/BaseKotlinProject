@@ -25,6 +25,10 @@ android {
     dataBinding {
         enabled true
     }
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -35,8 +39,6 @@ android {
 
 dependencies {
     implementation project(':kotlinbase')
-    kapt 'com.google.dagger:dagger-compiler:2.16'
-    kapt "com.google.dagger:dagger-android-processor:2.16"
     kapt "com.alibaba:arouter-compiler:1.1.4"
     implementation lib.SmartRefreshLayout
 }

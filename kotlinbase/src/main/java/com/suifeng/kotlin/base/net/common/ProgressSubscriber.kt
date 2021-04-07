@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.base.net.common
 
-import android.support.v4.app.FragmentManager
-import com.ssf.framework.net.interfac.IDialog
+import androidx.fragment.app.FragmentManager
+import com.suifeng.kotlin.base.net.interfac.IDialog
 import com.suifeng.kotlin.base.widget.dialog.ProgressDialogFragment
 import com.suifeng.kotlin.base.extension.IConfig.Companion.NET_PROGRESS_TAG
 import com.suifeng.kotlin.base.utils.log.KLog

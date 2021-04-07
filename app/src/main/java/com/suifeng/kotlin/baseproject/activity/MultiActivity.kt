@@ -1,8 +1,8 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.support.design.widget.TabLayout
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.android.material.tabs.TabLayout
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.base.widget.recyclerview.HotItemDecoration
 import com.suifeng.kotlin.baseproject.R

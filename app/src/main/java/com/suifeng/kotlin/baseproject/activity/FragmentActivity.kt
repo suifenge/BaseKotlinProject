@@ -1,6 +1,6 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.baseproject.R
@@ -9,7 +9,6 @@ import com.suifeng.kotlin.baseproject.databinding.ActivityFragmentBinding
 import com.suifeng.kotlin.baseproject.ex.setToolbarTitle
 import com.suifeng.kotlin.baseproject.fragment.DemoFragment
 import com.suifeng.kotlin.baseproject.vm.FragmentViewModel
-import dagger.android.support.HasSupportFragmentInjector
 
 /**
  * @author ljc
@@ -17,7 +16,7 @@ import dagger.android.support.HasSupportFragmentInjector
  * @describe
  */
 @Route(path = ARouterConfig.AR_PATH_FRAGMENT)
-class FragmentActivity: BaseActivity<ActivityFragmentBinding>(R.layout.activity_fragment), HasSupportFragmentInjector{
+class FragmentActivity: BaseActivity<ActivityFragmentBinding>(R.layout.activity_fragment){
 
 
     private val mToolbar: Toolbar by lazy {

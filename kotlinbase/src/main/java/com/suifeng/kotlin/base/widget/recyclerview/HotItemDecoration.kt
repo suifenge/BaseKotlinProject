@@ -21,12 +21,12 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.suifeng.kotlin.base.R
 
@@ -63,7 +63,7 @@ class HotItemDecoration
         mDivider = drawable
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         if (parent.layoutManager == null || mDivider == null) {
             return
         }
@@ -132,7 +132,7 @@ class HotItemDecoration
     private fun isLastCol(parent: RecyclerView, pos: Int, spanCount: Int): Boolean {
         val layoutManager = parent.layoutManager
         val adapter = parent.adapter
-        var childCount = adapter.itemCount
+        var childCount = adapter!!.itemCount
         if (layoutManager is GridLayoutManager) {
             if ((pos + 1) % spanCount == 0) {
                 return true
@@ -156,7 +156,7 @@ class HotItemDecoration
     private fun isLastRaw(parent: RecyclerView, pos: Int, spanCount: Int): Boolean {
         val layoutManager = parent.layoutManager
         val adapter = parent.adapter
-        var childCount = adapter.itemCount
+        var childCount = adapter!!.itemCount
         if (layoutManager is GridLayoutManager) {
             childCount -= childCount % spanCount
             if (pos >= childCount) {
@@ -180,7 +180,7 @@ class HotItemDecoration
         return false
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         if (mDivider == null) {
             outRect.set(0, 0, 0, 0)
             return

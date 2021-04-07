@@ -1,9 +1,9 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.databinding.Observable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
+import androidx.databinding.Observable
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.suifeng.kotlin.base.extension.bindKeyboardLayout
 import com.suifeng.kotlin.base.ui.activity.BaseActivity

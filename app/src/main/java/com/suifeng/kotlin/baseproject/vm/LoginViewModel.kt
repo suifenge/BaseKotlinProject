@@ -1,29 +1,26 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import android.annotation.SuppressLint
+import android.app.Application
 import android.text.TextUtils
 import android.view.View
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import com.alibaba.android.arouter.launcher.ARouter
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
-import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import es.dmoral.toasty.Toasty
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * @author ljc
  * @data 2018/8/6
  * @describe
  */
-
-@Singleton
-class LoginViewModel @Inject constructor(application: CustomApplication): BaseViewModel(application) {
+class LoginViewModel constructor(application: Application): BaseViewModel(application) {
 
     val userName = ObservableField<String>()
     val password = ObservableField<String>()
@@ -34,6 +31,7 @@ class LoginViewModel @Inject constructor(application: CustomApplication): BaseVi
     val passwordVisibility = ObservableBoolean(false)
 
     //模拟登录
+    @SuppressLint("CheckResult")
     fun login() {
         if(TextUtils.isEmpty(userName.get())) {
             Toasty.error(getApplication(), "请输入账号!").show()

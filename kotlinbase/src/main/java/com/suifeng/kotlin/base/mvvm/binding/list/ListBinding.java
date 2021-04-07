@@ -1,8 +1,8 @@
 package com.suifeng.kotlin.base.mvvm.binding.list;
 
-import android.databinding.BindingAdapter;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.suifeng.kotlin.base.adapter.BaseBindingAdapter;
 import com.suifeng.kotlin.base.adapter.CommonAdapter;

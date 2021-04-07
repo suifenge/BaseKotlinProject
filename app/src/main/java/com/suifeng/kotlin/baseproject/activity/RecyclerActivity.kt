@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.baseproject.activity
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.base.widget.recyclerview.HotItemDecoration
@@ -30,7 +30,7 @@ class RecyclerActivity: BaseActivity<ActivityRecyclerViewBinding>(
     }
 
     private val mAdapter by lazy {
-        SimpleAdapter(RecyclerActivity@this)
+        SimpleAdapter(this)
     }
 
     override fun init() {

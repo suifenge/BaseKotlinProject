@@ -1,10 +1,9 @@
 package com.suifeng.kotlin.base.adapter
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.view.View
-import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 
 /**
  * @author ljc
@@ -14,24 +13,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 abstract class MultiBaseBindingAdapter<T, B : ViewDataBinding>(
         layoutID: Int,
         list: ArrayList<T> = ArrayList()
-): BaseQuickAdapter<T, MultiBaseBindingViewHolder<B>>(layoutID, list) {
+): BaseQuickAdapter<T, BaseDataBindingHolder<B>>(layoutID, list) {
 
-    override fun createBaseViewHolder(view: View): MultiBaseBindingViewHolder<B> {
-        return MultiBaseBindingViewHolder(view)
+    override fun onItemViewHolderCreated(viewHolder: BaseDataBindingHolder<B>, viewType: Int) {
+        DataBindingUtil.bind<B>(viewHolder.itemView)
     }
 
-    override fun createBaseViewHolder(parent: ViewGroup, layoutResId: Int): MultiBaseBindingViewHolder<B> {
-        val binding = DataBindingUtil.inflate<B>(mLayoutInflater, layoutResId, parent, false)
-        val view = binding?.root ?: getItemView(layoutResId, parent)
-        val holder = MultiBaseBindingViewHolder<B>(view)
-        holder.binding = binding
-        return holder
-    }
-
-    override fun convert(helper: MultiBaseBindingViewHolder<B>, item: T) {
-        convert(helper.binding, item)
-        helper.binding.executePendingBindings()
-    }
-
-    abstract fun convert(binding: B, item: T)
 }

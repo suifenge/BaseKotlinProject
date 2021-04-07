@@ -1,10 +1,10 @@
 package com.suifeng.kotlin.base.mvvm.vm
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.suifeng.kotlin.base.mvvm.observer.DefaultActivityObserver
 import com.suifeng.kotlin.base.mvvm.observer.DefaultErrorObserver
 import com.suifeng.kotlin.base.mvvm.observer.DefaultProgressObserver

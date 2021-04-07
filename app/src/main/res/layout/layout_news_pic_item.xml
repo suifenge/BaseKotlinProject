@@ -7,7 +7,7 @@
             name="picture"
             type="com.suifeng.kotlin.baseproject.bean.NewsBean.Data.DataBean.PicInfo"/>
     </data>
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="105dp">
         <ImageView
@@ -18,5 +18,5 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="5dp"
             source="@{picture.url}"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
