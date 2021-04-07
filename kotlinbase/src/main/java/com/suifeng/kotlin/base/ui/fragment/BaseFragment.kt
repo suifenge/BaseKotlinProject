@@ -10,11 +10,11 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.suifeng.kotlin.base.BaseApplication
 import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
-import com.trello.rxlifecycle2.android.FragmentEvent
-import com.trello.rxlifecycle2.components.support.RxFragment
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
+import com.trello.rxlifecycle4.android.FragmentEvent
+import com.trello.rxlifecycle4.components.support.RxFragment
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableEmitter
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
 
 /**
@@ -80,7 +80,7 @@ abstract class BaseFragment<V: ViewDataBinding>(
                 }
             }).compose(bindUntilEvent(FragmentEvent.DESTROY))
                     .throttleFirst(500, TimeUnit.MILLISECONDS)
-                    .subscribe({ onClick(it) })
+                    .subscribe { onClick(it) }
         }
     }
 

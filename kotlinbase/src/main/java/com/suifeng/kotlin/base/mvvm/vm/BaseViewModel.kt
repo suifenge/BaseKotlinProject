@@ -8,18 +8,18 @@ import com.suifeng.kotlin.base.mvvm.livedata.ActivityLiveData
 import com.suifeng.kotlin.base.mvvm.livedata.ErrorLiveData
 import com.suifeng.kotlin.base.mvvm.livedata.ProgressLiveData
 import com.suifeng.kotlin.base.mvvm.livedata.ToastLiveData
-import com.trello.rxlifecycle2.LifecycleProvider
-import com.trello.rxlifecycle2.LifecycleTransformer
-import com.trello.rxlifecycle2.RxLifecycle
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
+import com.trello.rxlifecycle4.LifecycleProvider
+import com.trello.rxlifecycle4.LifecycleTransformer
+import com.trello.rxlifecycle4.RxLifecycle
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 /**
  * @author ljc
  * @data 2018/8/6
  * @describe
  */
-open class BaseViewModel(application: Application) : AndroidViewModel(application), LifecycleProvider<ViewModelEvent>{
+open class BaseViewModel(application: Application) : AndroidViewModel(application), LifecycleProvider<ViewModelEvent> {
 
     private val lifecycleSubject = BehaviorSubject.create<ViewModelEvent>()
 

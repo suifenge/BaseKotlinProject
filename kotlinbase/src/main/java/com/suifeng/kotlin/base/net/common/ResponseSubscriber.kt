@@ -1,7 +1,8 @@
 package com.suifeng.kotlin.base.net.common
 
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+
 
 class ResponseSubscriber<T>(
         /* 回调 */

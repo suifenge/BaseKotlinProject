@@ -10,9 +10,9 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import es.dmoral.toasty.Toasty
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 /**

@@ -4,7 +4,7 @@ import com.suifeng.kotlin.baseproject.bean.NewsBean
 import com.suifeng.kotlin.baseproject.bean.PictureBean
 import com.suifeng.kotlin.baseproject.bean.WeatherBean
 import com.suifeng.kotlin.baseproject.consts.Constants
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

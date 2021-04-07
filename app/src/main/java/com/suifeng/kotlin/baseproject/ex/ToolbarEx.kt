@@ -3,8 +3,8 @@ package com.suifeng.kotlin.baseproject.ex
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.suifeng.kotlin.baseproject.R
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import com.trello.rxlifecycle2.components.support.RxFragment
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle4.components.support.RxFragment
 
 /**
  * @author ljc

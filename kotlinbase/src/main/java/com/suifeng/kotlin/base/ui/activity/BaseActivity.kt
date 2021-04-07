@@ -13,10 +13,10 @@ import com.suifeng.kotlin.base.swipback.SwipeBackActivity
 import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
-import com.trello.rxlifecycle2.android.ActivityEvent
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
+import com.trello.rxlifecycle4.android.ActivityEvent
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableEmitter
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import java.util.concurrent.TimeUnit
 
 /**
@@ -72,7 +72,7 @@ abstract class BaseActivity<V: ViewDataBinding>(
     private fun initViewDataBinding() {
         //DataBindingUtil类需要在project的build中配置 dataBinding {enabled true }, 同步后会自动关联android.databinding包
         binding = DataBindingUtil.setContentView(this, layoutResId)
-        binding.setLifecycleOwner(this) //绑定LiveData并对Binding设置LifecycleOwner
+        binding.lifecycleOwner = this //绑定LiveData并对Binding设置LifecycleOwner
     }
 
     @SuppressLint("CheckResult")

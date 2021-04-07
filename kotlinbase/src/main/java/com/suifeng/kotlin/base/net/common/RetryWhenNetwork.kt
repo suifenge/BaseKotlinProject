@@ -1,9 +1,9 @@
 package com.suifeng.kotlin.base.net.common
 
 import com.suifeng.kotlin.base.utils.log.KLog
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Function
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.functions.Function
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.util.concurrent.TimeUnit

@@ -4,7 +4,7 @@ import com.suifeng.kotlin.baseproject.bean.NewsBean
 import com.suifeng.kotlin.baseproject.bean.PictureBean
 import com.suifeng.kotlin.baseproject.bean.WeatherBean
 import com.suifeng.kotlin.baseproject.data.api.ICommonApi
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Response
 
 /**

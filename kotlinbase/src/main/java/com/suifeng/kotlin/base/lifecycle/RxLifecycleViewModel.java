@@ -1,11 +1,13 @@
 package com.suifeng.kotlin.base.lifecycle;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle4.LifecycleTransformer;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.Function;
 
-import static com.trello.rxlifecycle2.RxLifecycle.bind;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.Function;
+
+import static com.trello.rxlifecycle4.RxLifecycle.bind;
+
 
 public class RxLifecycleViewModel {
     public static <T> LifecycleTransformer<T> bindViewModel(final Observable<ViewModelEvent> lifecycle) {

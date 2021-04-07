@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class NetStateReceiver extends BroadcastReceiver {
 
-    public final static String CUSTOM_ANDROID_NET_CHANGE_ACTION = "com.qc.obsessive.library.net.conn.CONNECTIVITY_CHANGE";
+    public final static String CUSTOM_ANDROID_NET_CHANGE_ACTION = "com.suifeng.obsessive.library.net.conn.CONNECTIVITY_CHANGE";
     private final static String ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
     private final static String TAG = NetStateReceiver.class.getSimpleName();
 

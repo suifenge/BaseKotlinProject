@@ -4,23 +4,22 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import com.suifeng.kotlin.base.net.interfac.IDialog
 import com.suifeng.kotlin.base.net.common.ProgressSubscriber
 import com.suifeng.kotlin.base.net.common.ResponseListener
 import com.suifeng.kotlin.base.net.common.ResponseSubscriber
+import com.suifeng.kotlin.base.net.interfac.IDialog
 import com.suifeng.kotlin.base.net.transformer.ApplySchedulers
 import com.suifeng.kotlin.base.net.transformer.ConvertSchedulers
-import com.suifeng.kotlin.base.net.transformer.wrapperSchedulers
+import com.suifeng.kotlin.base.net.transformer.WrapperSchedulers
 import com.suifeng.kotlin.base.utils.log.KLog
-import com.trello.rxlifecycle2.android.ActivityEvent
-import com.trello.rxlifecycle2.android.FragmentEvent
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import com.trello.rxlifecycle2.components.support.RxDialogFragment
-import com.trello.rxlifecycle2.components.support.RxFragment
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
+import com.trello.rxlifecycle4.android.ActivityEvent
+import com.trello.rxlifecycle4.android.FragmentEvent
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle4.components.support.RxDialogFragment
+import com.trello.rxlifecycle4.components.support.RxFragment
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
 import retrofit2.Response
-import java.util.*
 
 public inline fun <T> Observable<T>.apply(
         // 必传对象，用于控制声明周期
@@ -351,7 +350,7 @@ public inline fun <T> Observable<Response<T>>.convert(
  * @param rx life
  */
 public inline fun <T> Observable<T>.wrapper(rx: RxAppCompatActivity): Observable<T> {
-    return this.compose(wrapperSchedulers())
+    return this.compose(WrapperSchedulers())
             .compose(rx.bindUntilEvent(ActivityEvent.DESTROY))
 }
 
@@ -369,7 +368,7 @@ public inline fun <T> Observable<Response<T>>.convertRequest(rx: RxAppCompatActi
  * @param rx life
  */
 public inline fun <T> Observable<T>.wrapper(rx: RxFragment): Observable<T> {
-    return this.compose(wrapperSchedulers())
+    return this.compose(WrapperSchedulers())
             .compose(rx.bindUntilEvent(FragmentEvent.DESTROY))
 }
 
@@ -388,7 +387,7 @@ public inline fun <T> Observable<Response<T>>.convertRequest(rx: RxFragment): Ob
  * @param rx life
  */
 public inline fun <T> Observable<T>.wrapper(rx: RxDialogFragment): Observable<T> {
-    return this.compose(wrapperSchedulers())
+    return this.compose(WrapperSchedulers())
             .compose(rx.bindUntilEvent(FragmentEvent.DESTROY_VIEW))
 }
 

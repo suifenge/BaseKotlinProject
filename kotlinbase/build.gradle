@@ -52,7 +52,6 @@ dependencies {
     api lib.RxAndroid
     api lib.Gson
     api lib.Toasty
-    api lib.EventBus
     api lib.Glide
     kapt lib.GlideCompiler
     api lib.ARouterApi

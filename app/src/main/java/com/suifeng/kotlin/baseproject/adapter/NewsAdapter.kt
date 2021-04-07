@@ -17,7 +17,7 @@ class NewsAdapter: MultiBaseBindingAdapter<NewsBean.Data.DataBean, LayoutNewsIte
 ) {
     override fun convert(holder: BaseDataBindingHolder<LayoutNewsItemBinding>, item: NewsBean.Data.DataBean) {
         holder.dataBinding?.news = item
-        holder.dataBinding?.rvImg?.layoutManager = GridLayoutManager(holder.dataBinding?.root?.context, 3)
+        holder.dataBinding?.rvImg?.layoutManager = GridLayoutManager(holder.itemView.context, 3)
         holder.dataBinding?.rvImg?.adapter = NewsPictureAdapter(item.picInfo)
     }
 
