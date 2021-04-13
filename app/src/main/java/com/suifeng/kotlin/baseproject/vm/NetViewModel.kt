@@ -31,7 +31,7 @@ class NetViewModel constructor(application: Application): BaseViewModel(applicat
             return
         }
         mNetRepository.getWeather(cityName.get()!!)
-                .convert(success = {
+                .convert(rx = this, success = {
                     val text = "城市：${it.data.city}\n日期：${it.data.forecast[0].date}\n" +
                             "温度：${it.data.forecast[0].high} ~ ${it.data.forecast[0].low}\n风力：${it.data.forecast[0].fengli}\n" +
                             "风向：${it.data.forecast[0].fengxiang}\n天气状况：${it.data.forecast[0].type}\n感冒：${it.data.ganmao}\n" +

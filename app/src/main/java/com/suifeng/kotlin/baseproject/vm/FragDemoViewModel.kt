@@ -27,7 +27,7 @@ class FragDemoViewModel constructor(application: Application): BaseViewModel(app
 
     fun getPictures(page: Int = 1) {
         mNetRepository.getPicture(page)
-                .convert(success = {
+                .convert(rx = this, success = {
                     if(page == 1) {
                         pictureData.clear()
                         refresh.result(RefreshLiveData.REFRESH_SUCCESS)

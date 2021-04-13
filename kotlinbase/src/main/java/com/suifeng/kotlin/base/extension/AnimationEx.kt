@@ -16,7 +16,7 @@ public inline fun View.rotate(endRotate: Float, duration: Long = 600) {
 }
 
 public inline fun View.rotate(startRotate: Float, endRotate: Float, duration: Long = 600) {
-    val anim = ObjectAnimator.ofFloat(this, "rotation", this.rotation, endRotate)
+    val anim = ObjectAnimator.ofFloat(this, "rotation", startRotate, endRotate)
     anim.duration = duration
     anim.start()
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.net.common.ProgressSubscriber
 import com.suifeng.kotlin.base.net.common.ResponseListener
 import com.suifeng.kotlin.base.net.common.ResponseSubscriber
@@ -147,6 +148,47 @@ public inline fun <T> Observable<Response<T>>.convert(
         noinline complete: () -> Unit = {}
 ) {
     this.compose(ConvertSchedulers())
+            .subscribe(ResponseSubscriber(responseListener = object :
+                    ResponseListener<T> {
+
+                override fun onSucceed(data: T) {
+                    try {
+                        success(data)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        onError(e)
+                    }
+                }
+
+                override fun onError(exception: Throwable) {
+                    try {
+                        error(exception)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        KLog.e("onError函数调用奔溃")
+                    }
+                }
+
+                override fun onComplete() {
+                    complete()
+                }
+            }))
+}
+
+/**
+ * ViewModel网络请求拓展
+ */
+public inline fun <T> Observable<Response<T>>.convert(
+        rx: BaseViewModel,
+        // 成功回调
+        noinline success: (T) -> Unit,
+        // 失败回调
+        noinline error: (Throwable) -> Unit = {},
+        // 成功后，并执行完 success 方法后回调
+        noinline complete: () -> Unit = {}
+) {
+    this.compose(ConvertSchedulers())
+            .compose(rx.bindToLifecycle())
             .subscribe(ResponseSubscriber(responseListener = object :
                     ResponseListener<T> {
 

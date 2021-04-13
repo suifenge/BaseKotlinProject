@@ -25,7 +25,7 @@ class MultiViewModel constructor(application: Application): BaseViewModel(applic
 
     fun getNews() {
         mNetRepository.getNews()
-                .convert(success = {
+                .convert(rx = this, success = {
                     newsBean = it
                     newsList.addAll(it.data.toutiao)
                 }, error = {
