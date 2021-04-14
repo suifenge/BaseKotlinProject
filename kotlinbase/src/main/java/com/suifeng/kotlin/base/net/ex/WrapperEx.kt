@@ -9,7 +9,7 @@ import com.suifeng.kotlin.base.net.common.ResponseListener
 import com.suifeng.kotlin.base.net.interfac.IDialog
 import com.suifeng.kotlin.base.net.transformer.ApplySchedulers
 import com.suifeng.kotlin.base.net.transformer.ConvertSchedulers
-import com.suifeng.kotlin.base.net.transformer.wrapperSchedulers
+import com.suifeng.kotlin.base.net.transformer.WrapperSchedulers
 import com.suifeng.kotlin.base.utils.log.KLog
 import com.trello.rxlifecycle4.android.ActivityEvent
 import com.trello.rxlifecycle4.android.FragmentEvent
@@ -280,7 +280,7 @@ public inline fun <T> Observable<Response<T>>.convert(
  * @param rx life
  */
 public inline fun <T> Observable<T>.wrapper(rx: RxAppCompatActivity): Observable<T> {
-    return this.compose(wrapperSchedulers())
+    return this.compose(WrapperSchedulers())
             .compose(rx.bindUntilEvent(ActivityEvent.DESTROY))
 }
 
@@ -298,7 +298,7 @@ public inline fun <T> Observable<Response<T>>.convertRequest(rx: RxAppCompatActi
  * @param rx life
  */
 public inline fun <T> Observable<T>.wrapper(rx: RxFragment): Observable<T> {
-    return this.compose(wrapperSchedulers())
+    return this.compose(WrapperSchedulers())
             .compose(rx.bindUntilEvent(FragmentEvent.DESTROY))
 }
 
@@ -317,7 +317,7 @@ public inline fun <T> Observable<Response<T>>.convertRequest(rx: RxFragment): Ob
  * @param rx life
  */
 public inline fun <T> Observable<T>.wrapper(rx: RxDialogFragment): Observable<T> {
-    return this.compose(wrapperSchedulers())
+    return this.compose(WrapperSchedulers())
             .compose(rx.bindUntilEvent(FragmentEvent.DESTROY_VIEW))
 }
 

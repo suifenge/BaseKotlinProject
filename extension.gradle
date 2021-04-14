@@ -17,7 +17,7 @@ ext {
             Corektx              : 'androidx.core:core-ktx:1.0.2',
             RxLifeCycle          : 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.2',
             Retrofit             : 'com.squareup.retrofit2:retrofit:2.9.0',
-            RetrofitAdapter      : 'com.squareup.retrofit2:adapter-rxjava2:2.9.0',
+            RetrofitAdapter      : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
             RetrofitMoShi        : 'com.squareup.retrofit2:converter-moshi:2.9.0',                  //Moshi is a modern JSON library for Android and Java. It makes it easy to parse JSON into Java objects
             RetrofitScalars      : 'com.squareup.retrofit2:converter-scalars:2.9.0',                //retrofit对String的支持
             RetrofitGson         : 'com.squareup.retrofit2:converter-gson:2.9.0',
