@@ -16,15 +16,11 @@ import com.suifeng.kotlin.baseproject.vm.FragmentViewModel
  * @describe
  */
 @Route(path = ARouterConfig.AR_PATH_FRAGMENT)
-class FragmentActivity: BaseActivity<ActivityFragmentBinding>(R.layout.activity_fragment){
+class FragmentActivity: BaseActivity<ActivityFragmentBinding, FragmentViewModel>(R.layout.activity_fragment){
 
 
     private val mToolbar: Toolbar by lazy {
         findViewById<Toolbar>(R.id.toolbar)
-    }
-
-    private val viewMoel by lazy {
-        viewModelProvider.get(FragmentViewModel::class.java)
     }
 
     override fun init() {
@@ -37,6 +33,10 @@ class FragmentActivity: BaseActivity<ActivityFragmentBinding>(R.layout.activity_
 
     private fun initToolBar() {
         setToolbarTitle(mToolbar, "Fragment例子", true)
+    }
+
+    override fun aspectViewModelClass(): Class<FragmentViewModel> {
+        return FragmentViewModel::class.java
     }
 
 }

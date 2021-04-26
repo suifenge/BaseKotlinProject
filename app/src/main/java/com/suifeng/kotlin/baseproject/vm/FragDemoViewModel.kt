@@ -1,6 +1,5 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.app.Application
 import androidx.databinding.ObservableArrayList
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.net.ex.convert
@@ -15,7 +14,7 @@ import com.suifeng.kotlin.baseproject.ex.responseError
  * @data 2018/8/13
  * @describe
  */
-class FragDemoViewModel constructor(application: Application): BaseViewModel(application) {
+class FragDemoViewModel: BaseViewModel() {
 
     val pictureData = ObservableArrayList<PictureBean.Data>()
     val refresh = RefreshLiveData()

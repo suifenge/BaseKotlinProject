@@ -18,15 +18,14 @@ import java.lang.RuntimeException
  * Activity级的ViewModelStore，存非AppViewModel之外所有
  * Application级的ViewModelStore,只能存AppViewModel
  */
-class SuperViewModelProvider(private val lifecycleOwner: LifecycleOwner, factory: Factory,
-                             private val appViewModelProvider: ViewModelProvider? = null) : ViewModelProvider(
+class SuperViewModelProvider(private val lifecycleOwner: LifecycleOwner) : ViewModelProvider(
         if (lifecycleOwner is FragmentActivity) {
             lifecycleOwner
         } else if (lifecycleOwner is Fragment && lifecycleOwner.activity != null) {
             lifecycleOwner.activity!!
         } else {//activity is null
             throw RuntimeException("Fragment中创建ViewModel必须在onAttach之后")
-        }, factory) {
+        }) {
 
     private lateinit var activity: FragmentActivity
     //各个工程自定义风格的处理者
@@ -47,14 +46,6 @@ class SuperViewModelProvider(private val lifecycleOwner: LifecycleOwner, factory
     private val defaultActivityObserver by lazy { DefaultActivityObserver(activity) }
 
     override fun <T : ViewModel?> get(key: String, modelClass: Class<T>): T {
-        //需要获取的类是AppViewModel时,如果有AppViewModelProvider存取到App#ViewModelProvider，没有就存到Activity#ViewModelProvider里
-        appViewModelProvider?.let {
-            if (AppViewModel::class.java.isAssignableFrom(modelClass)) {
-                //get viewModel from ApplicationViewModelStore
-                return appViewModelProvider.get(modelClass)
-            }
-        }
-
         //get viewModel from ownerViewModelStore
         val vm = super.get(key, modelClass)//从ViewModelStore中取出ViewModel
         if (vm is BaseViewModel) {

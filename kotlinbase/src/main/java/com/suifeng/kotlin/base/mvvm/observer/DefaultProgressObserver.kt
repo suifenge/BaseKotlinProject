@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import com.suifeng.kotlin.base.mvvm.livedata.ProgressLiveData
 
-class DefaultProgressObserver(val owner: FragmentActivity) : Observer<ProgressLiveData.Progress> {
+class DefaultProgressObserver(private val owner: FragmentActivity) : Observer<ProgressLiveData.Progress> {
     companion object {
         const val PROGRESS_TAG = -100
     }

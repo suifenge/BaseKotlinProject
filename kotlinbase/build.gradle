@@ -30,14 +30,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation lib.Appcompat
     api lib.Material
-//    api lib.SupportV4
     api lib.Recyclerview
     api lib.ConstraintLayout
     api lib.Multidex
+    api lib.Coroutines
+    api lib.CoroutinesAndroid
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    api (lib.RxLifeCycle) {
-        exclude group: 'io.reactivex.rxjava2', module: 'rxandroid'
-    }
+    api lib.LifeCycleViweModel
+    api lib.LifeCycleLiveData
+    api lib.LifeCycleRuntime
     api lib.Retrofit
     api (lib.RetrofitAdapter) {
         exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
@@ -57,6 +58,4 @@ dependencies {
     api lib.ARouterApi
     api lib.BaseRecyclerViewAdapterHelper
     api lib.SmartRefreshLayoutHeader
-    //mvvm
-    api lib.ArchLifecycle
 }

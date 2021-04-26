@@ -1,7 +1,6 @@
 package com.suifeng.kotlin.baseproject.vm
 
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
-import com.suifeng.kotlin.baseproject.CustomApplication
 
 /**
  * @author ljc
@@ -9,4 +8,4 @@ import com.suifeng.kotlin.baseproject.CustomApplication
  * @describe
  */
 
-class DemoViewModel constructor(application: CustomApplication): BaseViewModel(application)
+class DemoViewModel: BaseViewModel()

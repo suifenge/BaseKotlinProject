@@ -7,7 +7,9 @@ import android.view.View
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.alibaba.android.arouter.launcher.ARouter
+import com.suifeng.kotlin.base.extension.IToast
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
+import com.suifeng.kotlin.baseproject.CustomApplication
 import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import es.dmoral.toasty.Toasty
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit
  * @data 2018/8/6
  * @describe
  */
-class LoginViewModel constructor(application: Application): BaseViewModel(application) {
+class LoginViewModel: BaseViewModel() {
 
     val userName = ObservableField<String>()
     val password = ObservableField<String>()
@@ -34,11 +36,11 @@ class LoginViewModel constructor(application: Application): BaseViewModel(applic
     @SuppressLint("CheckResult")
     fun login() {
         if(TextUtils.isEmpty(userName.get())) {
-            Toasty.error(getApplication(), "请输入账号!").show()
+            toast.show("请输入账号!", IToast.ERROR)
             return
         }
         if(TextUtils.isEmpty(password.get())) {
-            Toasty.error(getApplication(), "请输入密码!").show()
+            toast.show("请输入密码!", IToast.ERROR)
             return
         }
         //登录跳转

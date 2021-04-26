@@ -1,34 +1,25 @@
 package com.suifeng.kotlin.base.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
-import com.suifeng.kotlin.base.BaseApplication
 import com.suifeng.kotlin.base.R
+import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
 import com.suifeng.kotlin.base.swipback.SwipeBackActivity
 import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
-import com.trello.rxlifecycle4.android.ActivityEvent
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.ObservableEmitter
-import io.reactivex.rxjava3.core.ObservableOnSubscribe
-import java.util.concurrent.TimeUnit
 
 /**
  * @author ljc
  * @data 2018/6/19
  * @describe
  */
-abstract class BaseActivity<V: ViewDataBinding>(
+abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
     //自定义布局的id
     private val layoutResId: Int,
-    //需要设置点击事件的ViewId
-    private vararg val ids: Int = intArrayOf(0),
     //是否可以右划退出，默认是true
     private val swipeBackEnable: Boolean = true,
     //状态栏颜色
@@ -38,9 +29,7 @@ abstract class BaseActivity<V: ViewDataBinding>(
 
     protected lateinit var binding: V
 
-    protected val viewModelProvider: ViewModelProvider by lazy {
-        createViewModelProvider()
-    }
+    protected lateinit var viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(toggleOverridePendingTransition()) {
@@ -60,10 +49,21 @@ abstract class BaseActivity<V: ViewDataBinding>(
         initStatusBar()
         //设置是否打开滑动退出
         setSwipeBackEnable(swipeBackEnable)
+        viewModel = getViewModelInstance(aspectViewModelClass())
         //初始化Activity
         init()
-        //初始化监听
-        setClickViewId()
+    }
+
+    /**
+     * 当前ViewModel的Class
+     */
+    abstract fun aspectViewModelClass(): Class<VM>
+
+    /**
+     * 获取ViewModel实例
+     */
+    private fun getViewModelInstance(action: Class<VM>): VM {
+        return SuperViewModelProvider(this).get(action)
     }
 
     /**
@@ -75,25 +75,13 @@ abstract class BaseActivity<V: ViewDataBinding>(
         binding.lifecycleOwner = this //绑定LiveData并对Binding设置LifecycleOwner
     }
 
-    @SuppressLint("CheckResult")
-    private fun setClickViewId() {
-        Observable.create(object : ObservableOnSubscribe<View>, View.OnClickListener {
-            lateinit var emitter: ObservableEmitter<View>
-            override fun onClick(v: View) {
-                emitter.onNext(v)
-            }
-
-            override fun subscribe(emitter: ObservableEmitter<View>) {
-                this.emitter = emitter
-                ids.forEach { id ->
-                    if (id != 0) {
-                        findViewById<View>(id).setOnClickListener(this)
-                    }
-                }
-            }
-        }).compose(bindUntilEvent(ActivityEvent.DESTROY))
-                .throttleFirst(500, TimeUnit.MILLISECONDS)
-                .subscribe{ onClick(it) }
+    /**
+     * 给View设置点击事件
+     */
+    fun setClickView(vararg views: View) {
+        views.forEach {
+            it.setOnClickListener(this)
+        }
     }
 
     open fun initStatusBar() {
@@ -121,9 +109,7 @@ abstract class BaseActivity<V: ViewDataBinding>(
         }
     }
 
-    override fun onClick(view: View) {
-
-    }
+    override fun onClick(view: View) {}
 
     override fun onDestroy() {
         super.onDestroy()
@@ -132,10 +118,6 @@ abstract class BaseActivity<V: ViewDataBinding>(
 
     open fun toggleOverridePendingTransition() : Boolean { return false }
     open fun getOverridePendingTransitionMode() : TransitionMode? { return null }
-
-    private fun createViewModelProvider(): ViewModelProvider {
-        return SuperViewModelProvider(this, BaseApplication.viewModelFactory, BaseApplication.appViewModelProvider)
-    }
 
     enum class TransitionMode {
         LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE

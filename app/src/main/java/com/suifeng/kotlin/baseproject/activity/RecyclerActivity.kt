@@ -18,15 +18,11 @@ import com.suifeng.kotlin.baseproject.vm.RecyclerViewModel
  * @describe
  */
 @Route(path = ARouterConfig.AR_PATH_RECYCLER)
-class RecyclerActivity: BaseActivity<ActivityRecyclerViewBinding>(
+class RecyclerActivity: BaseActivity<ActivityRecyclerViewBinding, RecyclerViewModel>(
         R.layout.activity_recycler_view
 ) {
     private val mToolbar: Toolbar by lazy {
         findViewById<Toolbar>(R.id.toolbar)
-    }
-
-    private val viewModel by lazy {
-        viewModelProvider.get(RecyclerViewModel::class.java)
     }
 
     private val mAdapter by lazy {
@@ -48,5 +44,8 @@ class RecyclerActivity: BaseActivity<ActivityRecyclerViewBinding>(
     override fun toggleOverridePendingTransition(): Boolean  = true
 
     override fun getOverridePendingTransitionMode(): TransitionMode? = TransitionMode.FADE
+    override fun aspectViewModelClass(): Class<RecyclerViewModel> {
+        return RecyclerViewModel::class.java
+    }
 }
 

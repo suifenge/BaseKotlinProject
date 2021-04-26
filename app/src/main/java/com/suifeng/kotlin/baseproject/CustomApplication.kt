@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.baseproject
 
+import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
-import com.suifeng.kotlin.base.BaseApplication
 import com.suifeng.kotlin.baseproject.ex.initThird
 
 /**
@@ -9,9 +9,19 @@ import com.suifeng.kotlin.baseproject.ex.initThird
  * @data 2018/8/10
  * @describe
  */
-class CustomApplication: BaseApplication() {
+class CustomApplication: Application() {
 
-    override fun initApp() {
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+        initApp()
+    }
+
+    companion object {
+        @JvmStatic lateinit var instance: Application
+    }
+
+    private fun initApp() {
         ARouter.init(this)
         initThird()
     }

@@ -7,6 +7,9 @@ import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.baseproject.R
 import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import com.suifeng.kotlin.baseproject.databinding.ActivityDemoBinding
+import com.suifeng.kotlin.baseproject.vm.DemoViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * @author ljc
@@ -14,12 +17,12 @@ import com.suifeng.kotlin.baseproject.databinding.ActivityDemoBinding
  * @describe
  */
 @Route(path = ARouterConfig.AR_PATH_DEMO)
-class DemoActivity: BaseActivity<ActivityDemoBinding>(
-        R.layout.activity_demo,
-        R.id.btn_recycler_view, R.id.btn_net, R.id.btn_fragment, R.id.btn_multi_adapter
+class DemoActivity: BaseActivity<ActivityDemoBinding, DemoViewModel>(
+        R.layout.activity_demo
 ) {
 
     override fun init() {
+        setClickView(binding.btnRecyclerView, binding.btnNet, binding.btnFragment, binding.btnMultiAdapter)
     }
 
     override fun initStatusBar() {
@@ -33,6 +36,10 @@ class DemoActivity: BaseActivity<ActivityDemoBinding>(
             R.id.btn_fragment -> ARouter.getInstance().build(ARouterConfig.AR_PATH_FRAGMENT).navigation(this)
             R.id.btn_multi_adapter -> ARouter.getInstance().build(ARouterConfig.AR_PATH_MULTI).navigation(this)
         }
+    }
+
+    override fun aspectViewModelClass(): Class<DemoViewModel> {
+        return DemoViewModel::class.java
     }
 
 }

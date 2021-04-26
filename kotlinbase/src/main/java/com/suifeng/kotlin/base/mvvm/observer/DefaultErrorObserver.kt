@@ -6,7 +6,7 @@ import com.suifeng.kotlin.base.extension.IToast
 import com.suifeng.kotlin.base.extension.toast
 import com.suifeng.kotlin.base.mvvm.livedata.ErrorLiveData.Error
 
-class DefaultErrorObserver(val owner: FragmentActivity) : Observer<Error> {
+class DefaultErrorObserver(private val owner: FragmentActivity) : Observer<Error> {
     override fun onChanged(it: Error?) {
         owner.toast(it?.message ?: "", IToast.ERROR)
     }

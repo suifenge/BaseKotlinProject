@@ -4,14 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * @author ljc
  * @data 2018/6/19
  * @describe
  */
-open class SwipeBackActivity : RxAppCompatActivity(), SwipeBackActivityBase {
+open class SwipeBackActivity : AppCompatActivity(), SwipeBackActivityBase {
 
     private val mHelper: SwipeBackActivityHelper by lazy { SwipeBackActivityHelper(this) }
 

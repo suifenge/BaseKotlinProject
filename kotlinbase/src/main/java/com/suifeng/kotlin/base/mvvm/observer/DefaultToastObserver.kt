@@ -6,7 +6,7 @@ import com.suifeng.kotlin.base.extension.IToast
 import com.suifeng.kotlin.base.extension.toast
 import com.suifeng.kotlin.base.mvvm.livedata.ToastLiveData
 
-class DefaultToastObserver(val owner: FragmentActivity) : Observer<ToastLiveData.Toast> {
+class DefaultToastObserver(private val owner: FragmentActivity) : Observer<ToastLiveData.Toast> {
 
     override fun onChanged(it: ToastLiveData.Toast?) {
         owner.toast(it?.message ?: "", it?.type ?: IToast.NORMAL)

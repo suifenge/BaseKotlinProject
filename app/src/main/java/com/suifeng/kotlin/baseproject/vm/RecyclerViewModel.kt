@@ -1,6 +1,5 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.app.Application
 import androidx.databinding.ObservableArrayList
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.baseproject.bean.DataBean
@@ -11,7 +10,7 @@ import com.suifeng.kotlin.baseproject.bean.DataBean
  * @describe
  */
 
-class RecyclerViewModel constructor(application: Application): BaseViewModel(application) {
+class RecyclerViewModel: BaseViewModel() {
 
     val dataList = ObservableArrayList<DataBean>()
 

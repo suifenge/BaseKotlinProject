@@ -82,7 +82,7 @@ open class SubscribeLiveData<T>: LiveData<T>() {
             val stackTrace = Thread.currentThread().stackTrace
             if (stackTrace != null && stackTrace.isNotEmpty()) {
                 for (element in stackTrace) {
-                    if ("android.arch.lifecycle.LiveData" == element.className && "observeForever" == element.methodName) {
+                    if ("androidx.lifecycle.LiveData" == element.className && "observeForever" == element.methodName) {
                         return true
                     }
                 }

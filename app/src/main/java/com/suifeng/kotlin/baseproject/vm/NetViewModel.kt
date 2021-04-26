@@ -1,6 +1,5 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.app.Application
 import android.text.TextUtils
 import androidx.databinding.ObservableField
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
@@ -8,7 +7,6 @@ import com.suifeng.kotlin.base.net.ex.convert
 import com.suifeng.kotlin.baseproject.data.NetRepository
 import com.suifeng.kotlin.baseproject.data.RetrofitFactory
 import com.suifeng.kotlin.baseproject.ex.responseError
-import es.dmoral.toasty.Toasty
 
 /**
  * @author ljc
@@ -16,7 +14,7 @@ import es.dmoral.toasty.Toasty
  * @describe
  */
 
-class NetViewModel constructor(application: Application): BaseViewModel(application) {
+class NetViewModel: BaseViewModel() {
 
     val cityName = ObservableField<String>()
     val weather = ObservableField<String>()
@@ -27,7 +25,7 @@ class NetViewModel constructor(application: Application): BaseViewModel(applicat
 
     fun getWeather() {
         if(TextUtils.isEmpty(cityName.get())) {
-            Toasty.error(getApplication(), "请输入城市名称").show()
+            toast.show("请输入城市名称")
             return
         }
         mNetRepository.getWeather(cityName.get()!!)

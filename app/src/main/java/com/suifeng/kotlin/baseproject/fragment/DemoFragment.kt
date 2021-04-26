@@ -16,11 +16,7 @@ import com.suifeng.kotlin.baseproject.vm.FragDemoViewModel
  * @data 2018/8/13
  * @describe
  */
-class DemoFragment: BaseFragment<FragDemoBinding>(R.layout.frag_demo) {
-
-    private val viewModel by lazy {
-        viewModelProvider.get(FragDemoViewModel::class.java)
-    }
+class DemoFragment: BaseFragment<FragDemoBinding, FragDemoViewModel>(R.layout.frag_demo) {
 
     override fun init(rootView: View?, savedInstanceState: Bundle?) {
         binding.fragDemoViewModel = viewModel
@@ -44,6 +40,10 @@ class DemoFragment: BaseFragment<FragDemoBinding>(R.layout.frag_demo) {
                 }
             }
         })
+    }
+
+    override fun aspectViewModelClass(): Class<FragDemoViewModel> {
+        return FragDemoViewModel::class.java
     }
 
 }

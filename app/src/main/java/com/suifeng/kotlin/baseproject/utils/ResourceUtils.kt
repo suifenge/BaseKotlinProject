@@ -1,7 +1,7 @@
 package com.suifeng.kotlin.baseproject.utils
 
 import android.graphics.drawable.Drawable
-import com.suifeng.kotlin.base.BaseApplication
+import com.suifeng.kotlin.baseproject.CustomApplication
 
 /**
  * @author ljc
@@ -12,7 +12,7 @@ object ResourceUtils {
 
     @JvmStatic
     fun getDrawable(resId: Int): Drawable {
-        val application = BaseApplication.instance
+        val application = CustomApplication.instance
         return application.resources.getDrawable(resId)
     }
 }

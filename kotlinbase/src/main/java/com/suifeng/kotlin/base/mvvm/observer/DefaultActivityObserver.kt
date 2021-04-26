@@ -5,7 +5,7 @@ import androidx.lifecycle.Observer
 import com.suifeng.kotlin.base.mvvm.livedata.ActivityLiveData
 
 
-class DefaultActivityObserver(val owner: FragmentActivity) : Observer<ActivityLiveData.Result> {
+class DefaultActivityObserver(private val owner: FragmentActivity) : Observer<ActivityLiveData.Result> {
 
     override fun onChanged(it: ActivityLiveData.Result?) {
         it?.let {
@@ -14,7 +14,7 @@ class DefaultActivityObserver(val owner: FragmentActivity) : Observer<ActivityLi
                     owner.finish()
                 }
                 ActivityLiveData.CMD_FINISH_RESULT -> {
-                    owner.setResult(it.resutCode, it.data)
+                    owner.setResult(it.resultCode, it.data)
                     owner.finish()
                 }
             }

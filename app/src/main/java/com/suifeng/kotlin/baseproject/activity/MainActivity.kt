@@ -13,18 +13,10 @@ import com.suifeng.kotlin.baseproject.databinding.ActivityMainBinding
 import com.suifeng.kotlin.baseproject.vm.LoginViewModel
 
 @Route(path = ARouterConfig.AR_PATH_MAIN)
-class MainActivity : BaseActivity<ActivityMainBinding>(
+class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
         R.layout.activity_main,
-        R.id.iv_clear,
-        R.id.iv_switch_password,
-        R.id.btn_login,
         swipeBackEnable = false
 ) {
-
-    private val viewModel by lazy {
-        viewModelProvider.get(LoginViewModel::class.java)
-    }
-
     override fun init() {
         binding.viewModel = viewModel
         //内容布局、按钮和键盘进行绑定，不遮盖按钮
@@ -49,6 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 }
             }
         })
+        setClickView(binding.ivClear, binding.ivSwitchPassword, binding.btnLogin)
     }
 
     override fun initStatusBar() {
@@ -67,6 +60,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 viewModel.login()
             }
         }
+    }
+
+    override fun aspectViewModelClass(): Class<LoginViewModel> {
+        return LoginViewModel::class.java
     }
 }
 

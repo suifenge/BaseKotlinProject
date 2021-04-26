@@ -1,10 +1,10 @@
 package com.suifeng.kotlin.baseproject.ex
 
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.suifeng.kotlin.baseproject.R
-import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
-import com.trello.rxlifecycle4.components.support.RxFragment
 
 /**
  * @author ljc
@@ -12,7 +12,7 @@ import com.trello.rxlifecycle4.components.support.RxFragment
  * @describe
  */
 
-inline fun RxAppCompatActivity.setToolbarTitle(
+inline fun AppCompatActivity.setToolbarTitle(
         toolbar: Toolbar,
         title: String,
         isReturn: Boolean = false
@@ -24,7 +24,7 @@ inline fun RxAppCompatActivity.setToolbarTitle(
     }
 }
 
-inline fun RxFragment.setToolbarTitle(
+inline fun Fragment.setToolbarTitle(
         toolbar: Toolbar,
         title: String
 ) {

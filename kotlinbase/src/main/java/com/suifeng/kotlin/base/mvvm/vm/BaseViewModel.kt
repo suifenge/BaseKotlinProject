@@ -1,27 +1,17 @@
 package com.suifeng.kotlin.base.mvvm.vm
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import com.suifeng.kotlin.base.lifecycle.RxLifecycleViewModel
-import com.suifeng.kotlin.base.lifecycle.ViewModelEvent
+import androidx.lifecycle.ViewModel
 import com.suifeng.kotlin.base.mvvm.livedata.ActivityLiveData
 import com.suifeng.kotlin.base.mvvm.livedata.ErrorLiveData
 import com.suifeng.kotlin.base.mvvm.livedata.ProgressLiveData
 import com.suifeng.kotlin.base.mvvm.livedata.ToastLiveData
-import com.trello.rxlifecycle4.LifecycleProvider
-import com.trello.rxlifecycle4.LifecycleTransformer
-import com.trello.rxlifecycle4.RxLifecycle
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 /**
  * @author ljc
  * @data 2018/8/6
  * @describe
  */
-open class BaseViewModel(application: Application) : AndroidViewModel(application), LifecycleProvider<ViewModelEvent> {
-
-    private val lifecycleSubject = BehaviorSubject.create<ViewModelEvent>()
+open class BaseViewModel() : ViewModel(){
 
     val progress = ProgressLiveData()
     val error = ErrorLiveData()
@@ -30,18 +20,5 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
 
     override fun onCleared() {
         super.onCleared()
-        lifecycleSubject.onNext(ViewModelEvent.CLEAR)
-    }
-
-    override fun lifecycle(): Observable<ViewModelEvent> {
-        return lifecycleSubject.hide()
-    }
-
-    override fun <T : Any?> bindUntilEvent(event: ViewModelEvent): LifecycleTransformer<T> {
-        return RxLifecycle.bindUntilEvent(lifecycleSubject, event)
-    }
-
-    override fun <T : Any?> bindToLifecycle(): LifecycleTransformer<T> {
-        return RxLifecycleViewModel.bindViewModel(lifecycleSubject)
     }
 }

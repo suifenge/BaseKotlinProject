@@ -17,13 +17,9 @@ import com.suifeng.kotlin.baseproject.vm.MultiViewModel
  * @describe
  */
 @Route(path = ARouterConfig.AR_PATH_MULTI)
-class MultiActivity: BaseActivity<ActivityMultiBinding>(
+class MultiActivity: BaseActivity<ActivityMultiBinding, MultiViewModel>(
         R.layout.activity_multi
 ) {
-
-    private val viewModel by lazy {
-        viewModelProvider.get(MultiViewModel::class.java)
-    }
     override fun initStatusBar() {}
 
     override fun init() {
@@ -46,5 +42,9 @@ class MultiActivity: BaseActivity<ActivityMultiBinding>(
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
         })
+    }
+
+    override fun aspectViewModelClass(): Class<MultiViewModel> {
+        return MultiViewModel::class.java
     }
 }
