@@ -40,17 +40,12 @@ dependencies {
     api lib.LifeCycleLiveData
     api lib.LifeCycleRuntime
     api lib.Retrofit
-    api (lib.RetrofitAdapter) {
-        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
-    }
     api lib.RetrofitScalars
     api (lib.RetrofitGson) {
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     api lib.OkHttp
     api lib.OkHttpLogging
-    api lib.RxKotlin
-    api lib.RxAndroid
     api lib.Gson
     api lib.Toasty
     api lib.Glide

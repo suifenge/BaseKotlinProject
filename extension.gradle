@@ -28,14 +28,11 @@ ext {
             // 可选 - ProcessLifecycleOwner给整个 app进程 提供一个lifecycle
             LifeCycleProcess     : "androidx.lifecycle:lifecycle-process:$lifecycle_version",
             Retrofit             : 'com.squareup.retrofit2:retrofit:2.9.0',
-            RetrofitAdapter      : 'com.squareup.retrofit2:adapter-rxjava3:2.9.0',
             RetrofitMoShi        : 'com.squareup.retrofit2:converter-moshi:2.9.0',                  //Moshi is a modern JSON library for Android and Java. It makes it easy to parse JSON into Java objects
             RetrofitScalars      : 'com.squareup.retrofit2:converter-scalars:2.9.0',                //retrofit对String的支持
             RetrofitGson         : 'com.squareup.retrofit2:converter-gson:2.9.0',
             OkHttp               : 'com.squareup.okhttp3:okhttp:3.14.7',
             OkHttpLogging        : 'com.squareup.okhttp3:logging-interceptor:3.14.7',               //OkHttp Log拦截器
-            RxKotlin             : 'io.reactivex.rxjava3:rxkotlin:3.0.1',
-            RxAndroid            : 'io.reactivex.rxjava3:rxandroid:3.0.0',
             Gson                 : 'com.google.code.gson:gson:2.8.6',
             Toasty               : 'com.github.GrenderG:Toasty:1.5.0',                              //Toast封装
             Multidex             : 'androidx.multidex:multidex:2.0.0',

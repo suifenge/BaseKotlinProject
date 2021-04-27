@@ -1,6 +1,6 @@
 # BaseKotlinProject
 base project design by kotlin
-使用MVVM设计
+使用MVVM设计，加入协程，去除RxJava的使用；使用jetpack组件LifeCycle管理应用的生命周期
 ## 使用
 ### 引用工程
 > 直接依赖basekotlin库工程
@@ -9,6 +9,7 @@ base project design by kotlin
 allprojects {
     repositories {
         ...
+        //因为使用了Toasty这个第三方库，如果不使用可以去除引用，这里就不需要再添加这行
         maven { url 'https://jitpack.io' }
     }
 }
@@ -104,33 +105,6 @@ javaCompileOptions {
 -dontwarn com.squareup.okhttp.**
 -dontwarn okhttp3.**
 -dontwarn okio.**
-
-#RxJava RxAndroid
--dontwarn rx.*
--dontwarn sun.misc.**
-
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-   long producerIndex;
-   long consumerIndex;
-}
-
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
-
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
-
-#RxLifecycle
--keep class com.trello.rxlifecycle2.** { *; }
--keep interface com.trello.rxlifecycle2.** { *; }
--dontwarn com.trello.rxlifecycle2.**
-
-#RxPermissions
--keep class com.suifeng.kotlin.base.permissions.** { *; }
--keep interface com.suifeng.kotlin.base.permissions.** { *; }
-
 
 #=====================bindingcollectionadapter=====================
 

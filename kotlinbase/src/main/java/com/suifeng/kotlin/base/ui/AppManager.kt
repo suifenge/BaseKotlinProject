@@ -2,6 +2,7 @@ package com.suifeng.kotlin.base.ui
 
 import android.app.Activity
 import java.util.*
+import kotlin.system.exitProcess
 
 /**
  * @author ljc
@@ -68,7 +69,7 @@ class AppManager private constructor(){
     fun exitApp(killProgress: Boolean) {
         clear()
         if(killProgress) {
-            System.exit(0)
+            exitProcess(0)
         }
     }
 

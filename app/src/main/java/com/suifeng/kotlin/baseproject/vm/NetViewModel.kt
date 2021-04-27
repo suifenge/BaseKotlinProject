@@ -3,7 +3,6 @@ package com.suifeng.kotlin.baseproject.vm
 import android.text.TextUtils
 import androidx.databinding.ObservableField
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
-import com.suifeng.kotlin.base.net.ex.convert
 import com.suifeng.kotlin.baseproject.data.NetRepository
 import com.suifeng.kotlin.baseproject.data.RetrofitFactory
 import com.suifeng.kotlin.baseproject.ex.responseError
