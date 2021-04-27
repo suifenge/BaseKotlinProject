@@ -1,11 +1,9 @@
 package com.suifeng.kotlin.baseproject.data
 
-import com.suifeng.kotlin.baseproject.bean.NewsBean
+import com.suifeng.kotlin.baseproject.bean.News
 import com.suifeng.kotlin.baseproject.bean.PictureBean
 import com.suifeng.kotlin.baseproject.bean.WeatherBean
 import com.suifeng.kotlin.baseproject.data.api.ICommonApi
-import io.reactivex.rxjava3.core.Observable
-import retrofit2.Response
 
 /**
  * @author ljc
@@ -15,15 +13,15 @@ import retrofit2.Response
 
 class NetRepository constructor(private val commonApi: ICommonApi) {
 
-    fun getWeather(city: String): Observable<Response<WeatherBean>> {
+    suspend fun getWeather(city: String): WeatherBean {
         return commonApi.getWeather(city)
     }
 
-    fun getPicture(page: Int): Observable<Response<PictureBean>> {
+    suspend fun getPicture(page: Int): PictureBean {
         return commonApi.getMeitu(page)
     }
 
-    fun getNews(): Observable<Response<NewsBean>> {
+    suspend fun getNews(): News.NewsBean {
         return commonApi.getNews()
     }
 

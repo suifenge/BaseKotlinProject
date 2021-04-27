@@ -41,5 +41,6 @@ android {
 dependencies {
     implementation project(':kotlinbase')
     kapt "com.alibaba:arouter-compiler:1.1.4"
+    kapt lib.GlideCompiler
     implementation lib.SmartRefreshLayout
 }

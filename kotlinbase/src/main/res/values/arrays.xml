@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="news_title">
-        <item>头条</item>
-        <item>科技</item>
-        <item>汽车</item>
-        <item>财经</item>
-        <item>体育</item>
-        <item>要闻</item>
-        <item>军事</item>
-        <item>娱乐</item>
-    </string-array>
+
 </resources>

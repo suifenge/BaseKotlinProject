@@ -1,21 +1,18 @@
 package com.suifeng.kotlin.baseproject.vm
 
-import android.annotation.SuppressLint
-import android.app.Application
+import android.Manifest
 import android.text.TextUtils
 import android.view.View
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.fragment.app.FragmentActivity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.suifeng.kotlin.base.extension.IToast
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
-import com.suifeng.kotlin.baseproject.CustomApplication
+import com.suifeng.kotlin.base.permissions.PermissionManager
+import com.suifeng.kotlin.base.utils.log.KLog
 import com.suifeng.kotlin.baseproject.consts.ARouterConfig
-import es.dmoral.toasty.Toasty
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.delay
 
 /**
  * @author ljc
@@ -33,7 +30,6 @@ class LoginViewModel: BaseViewModel() {
     val passwordVisibility = ObservableBoolean(false)
 
     //模拟登录
-    @SuppressLint("CheckResult")
     fun login() {
         if(TextUtils.isEmpty(userName.get())) {
             toast.show("请输入账号!", IToast.ERROR)
@@ -45,23 +41,29 @@ class LoginViewModel: BaseViewModel() {
         }
         //登录跳转
         progress.show("登录中...")
-        Observable.timer(1500, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread(), true)
-                .subscribe ({
-                    progress.hide()
+        launchOnUI(
+                {
+                    delay(1500)
                     toast.show("登录成功")
                     next()
                     activity.finish()
-                }, {
-                    error.call(0, it.localizedMessage)
-                })
+                }, {error.call(0, it.localizedMessage)}, {progress.hide()}
+        )
     }
 
     private fun next() {
         ARouter.getInstance().build(ARouterConfig.AR_PATH_DEMO)
                 .navigation()
+    }
+
+    private val permsSd = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    fun requestPermissions(parent: FragmentActivity) {
+        launchOnUI({
+            val permissions = PermissionManager.getPermissionManager().requestPermissions(parent, permsSd)
+            permissions.forEach {
+                KLog.i("wtf","---->$it\n")
+            }
+        })
     }
 
     fun switchPasswordVisibility() {

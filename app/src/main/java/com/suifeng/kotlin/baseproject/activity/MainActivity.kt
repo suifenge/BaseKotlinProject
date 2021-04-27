@@ -19,6 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, LoginViewModel>(
 ) {
     override fun init() {
         binding.viewModel = viewModel
+        viewModel.requestPermissions(this)
         //内容布局、按钮和键盘进行绑定，不遮盖按钮
         binding.llContent.bindKeyboardLayout(binding.btnLogin)
         binding.edtUsername.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->

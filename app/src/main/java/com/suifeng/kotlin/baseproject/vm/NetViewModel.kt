@@ -28,17 +28,15 @@ class NetViewModel: BaseViewModel() {
             toast.show("请输入城市名称")
             return
         }
-        mNetRepository.getWeather(cityName.get()!!)
-                .convert(rx = this, success = {
-                    val text = "城市：${it.data.city}\n日期：${it.data.forecast[0].date}\n" +
-                            "温度：${it.data.forecast[0].high} ~ ${it.data.forecast[0].low}\n风力：${it.data.forecast[0].fengli}\n" +
-                            "风向：${it.data.forecast[0].fengxiang}\n天气状况：${it.data.forecast[0].type}\n感冒：${it.data.ganmao}\n" +
-                            "当前温度：${it.data.wendu}"
-                    weather.set(text)
-                }, error = {
-                    weather.set(it.message)
-                    responseError(it)
-                })
+        launchOnUI({
+            val weatherBean = mNetRepository.getWeather(cityName.get()!!)
+            val text = "城市：${weatherBean.result.today.city}\n今日天气：${weatherBean.result.today.weather}\n" +
+                    "风向：${weatherBean.result.today.wind}\n穿衣建议：${weatherBean.result.today.dressing_advice}"
+            weather.set(text)
+        }, {
+            weather.set(it.message)
+            responseError(it)}
+        )
     }
 
 }

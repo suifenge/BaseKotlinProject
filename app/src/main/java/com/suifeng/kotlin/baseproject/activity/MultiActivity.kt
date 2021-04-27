@@ -2,7 +2,6 @@ package com.suifeng.kotlin.baseproject.activity
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.google.android.material.tabs.TabLayout
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.base.widget.recyclerview.HotItemDecoration
 import com.suifeng.kotlin.baseproject.R
@@ -24,24 +23,10 @@ class MultiActivity: BaseActivity<ActivityMultiBinding, MultiViewModel>(
 
     override fun init() {
         binding.viewModel = viewModel
-        val newsTitle = resources.getStringArray(R.array.news_title)
-        newsTitle.forEach {
-            val tab = binding.tabLayout.newTab()
-            tab.text = it
-            binding.tabLayout.addTab(tab)
-        }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.addItemDecoration(HotItemDecoration(this))
         binding.recyclerView.adapter = NewsAdapter()
         viewModel.getNews()
-        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                viewModel.changeNewsData(tab.text.toString())
-            }
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-
-        })
     }
 
     override fun aspectViewModelClass(): Class<MultiViewModel> {

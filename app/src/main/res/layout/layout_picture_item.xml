@@ -7,7 +7,7 @@
         <import type="com.suifeng.kotlin.baseproject.R"/>
         <variable
             name="picture"
-            type="com.suifeng.kotlin.baseproject.bean.PictureBean.Data"/>
+            type="com.suifeng.kotlin.baseproject.bean.PictureBeanItem"/>
     </data>
 
     <RelativeLayout
@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            source="@{picture.url}"
+            source="@{picture.download_url}"
             placeholder="@{R.mipmap.ic_launcher}"
             errorholder="@{R.mipmap.ic_launcher}"/>
     </RelativeLayout>

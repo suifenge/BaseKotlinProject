@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.suifeng.kotlin.baseproject.R"/>
         <variable
             name="news"
-            type="com.suifeng.kotlin.baseproject.bean.NewsBean.Data.DataBean"/>
+            type="com.suifeng.kotlin.baseproject.bean.News.Result"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,15 +40,17 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             app:layout_constraintLeft_toLeftOf="@+id/tv_title"
             android:layout_marginTop="5dp"
-            android:text="@{news.digest}"
+            android:text="@{news.passtime}"
             tools:text="网易"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_img"
-            android:layout_width="0dp"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@null"
             app:layout_constraintTop_toBottomOf="@+id/tv_digest"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            source="@{news.image}"
+            placeholder="@{R.mipmap.ic_launcher}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

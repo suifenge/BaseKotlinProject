@@ -10,4 +10,14 @@ object RetrofitFactory {
             val hashMap = HashMap<String, String>()
             hashMap
         }).create()
+
+    val picApi = RetrofitClient.Builder(ICommonApi::class.java, true, Constants.BASE_PIC_URL, headers = {
+        val hashMap = HashMap<String, String>()
+        hashMap
+    }).create()
+
+    val newsApi = RetrofitClient.Builder(ICommonApi::class.java, true, Constants.BASE_NEWS_URL, headers = {
+        val hashMap = HashMap<String, String>()
+        hashMap
+    }).create()
 }

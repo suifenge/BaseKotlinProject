@@ -8,8 +8,6 @@ import com.suifeng.kotlin.baseproject.R
 import com.suifeng.kotlin.baseproject.consts.ARouterConfig
 import com.suifeng.kotlin.baseproject.databinding.ActivityDemoBinding
 import com.suifeng.kotlin.baseproject.vm.DemoViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 /**
  * @author ljc

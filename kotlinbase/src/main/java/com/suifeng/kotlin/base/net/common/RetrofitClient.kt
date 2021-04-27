@@ -49,7 +49,7 @@ class RetrofitClient {
                     .addConverterFactory(ScalarsConverterFactory.create())
                     //增加返回值为Gson的支持(以实体类返回)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+//                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .client(okHttpBuilder.build())
                     // 多域名
                     .baseUrl(builder.baseUrl)
