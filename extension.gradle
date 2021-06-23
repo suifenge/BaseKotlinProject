@@ -15,7 +15,7 @@ ext {
             Recyclerview         : "androidx.recyclerview:recyclerview:$androidxVersion",
             CardView             : "androidx.cardview:cardview:$androidxVersion",
             Material             : 'com.google.android.material:material:1.0.0-rc01',       //原来的support:design
-            ConstraintLayout     : 'androidx.constraintlayout:constraintlayout:2.1.0',
+            ConstraintLayout     : 'androidx.constraintlayout:constraintlayout:2.0.4',
             Corektx              : 'androidx.core:core-ktx:1.0.2',
             Coroutines           : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
             CoroutinesAndroid    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
