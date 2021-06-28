@@ -29,7 +29,7 @@ class PermissionManager private constructor(){
         return parent.supportFragmentManager.findFragmentByTag(TAG)
     }
 
-    suspend fun requestPermissions(parent: FragmentActivity, permissions: Array<String>): MutableList<Permission> = suspendCoroutine { coroutine ->
+    suspend fun requestPermissions(parent: FragmentActivity, permissions: Array<String>): MutableList<Permission> = suspendCancellableCoroutine { coroutine ->
         var permissionFragment = findPermissionFragment(parent)
         if(permissionFragment == null) {
             permissionFragment =PermissionFragment.newInstance(*permissions)
