@@ -35,6 +35,13 @@
             android:layout_height="55dp"
             android:textAllCaps="false"
             android:text="MultiBaseBindingAdapter"/>
+
+        <Button
+            android:id="@+id/btn_fold"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:textAllCaps="false"
+            android:text="CoordinatorLayout"/>
     </LinearLayout>
 
 </layout>

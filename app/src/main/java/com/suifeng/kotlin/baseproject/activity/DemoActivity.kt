@@ -20,7 +20,9 @@ class DemoActivity: BaseActivity<ActivityDemoBinding, DemoViewModel>(
 ) {
 
     override fun init() {
-        setClickView(binding.btnRecyclerView, binding.btnNet, binding.btnFragment, binding.btnMultiAdapter)
+        setClickView(binding.btnRecyclerView, binding.btnNet,
+            binding.btnFragment, binding.btnMultiAdapter,
+        binding.btnFold)
     }
 
     override fun initStatusBar() {
@@ -33,6 +35,7 @@ class DemoActivity: BaseActivity<ActivityDemoBinding, DemoViewModel>(
             R.id.btn_net -> ARouter.getInstance().build(ARouterConfig.AR_PATH_NET).navigation(this)
             R.id.btn_fragment -> ARouter.getInstance().build(ARouterConfig.AR_PATH_FRAGMENT).navigation(this)
             R.id.btn_multi_adapter -> ARouter.getInstance().build(ARouterConfig.AR_PATH_MULTI).navigation(this)
+            R.id.btn_fold -> ARouter.getInstance().build(ARouterConfig.AR_PATH_FOLD).navigation(this)
         }
     }
 

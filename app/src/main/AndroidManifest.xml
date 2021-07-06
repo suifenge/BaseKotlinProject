@@ -35,6 +35,8 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.MultiActivity"/>
+        <activity android:name=".activity.FoldLayoutTestActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -6,11 +6,12 @@ apply plugin: 'kotlin-kapt'
 def lib = rootProject.ext.libs
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.suifeng.kotlin.baseproject"
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
