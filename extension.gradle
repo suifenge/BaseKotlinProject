@@ -54,7 +54,8 @@ ext {
             GreenDao             : 'org.greenrobot:greendao:3.3.0',                                  //GreenDao数据库
             //classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0' // add plugin
             //apply plugin: 'org.greenrobot.greendao' // apply plugin
-            FreeProGuard         : 'com.blankj:free-proguard:1.0.2',                                //包含市面上比较主流的库的混淆配置
-            AndroidAutoSize      : 'me.jessyan:autosize:1.2.1'      //头条的适配方案
+            //FreeProGuard         : 'com.blankj:free-proguard:1.0.2',                                //包含市面上比较主流的库的混淆配置
+            AndroidAutoSize      : 'me.jessyan:autosize:1.2.1',      //头条的适配方案
+            SmartSwipe           : 'com.billy.android:smart-swipe:1.1.2'    //关于侧滑的库，包括退出（动画），删除item
     ]
 }

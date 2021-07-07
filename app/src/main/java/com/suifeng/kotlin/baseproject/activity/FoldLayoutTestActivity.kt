@@ -1,6 +1,8 @@
 package com.suifeng.kotlin.baseproject.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.billy.android.swipe.SmartSwipe
+import com.billy.android.swipe.consumer.SpaceConsumer
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.ui.activity.BaseActivity
 import com.suifeng.kotlin.baseproject.R
@@ -16,7 +18,9 @@ class FoldLayoutTestActivity: BaseActivity<ActivityFoldLayoutBinding, BaseViewMo
     }
 
     override fun init() {
-
+        SmartSwipe.wrap(binding.nestedView)
+            .addConsumer(SpaceConsumer())
+            .enableVertical()
     }
 
     override fun initStatusBar() {

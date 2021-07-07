@@ -53,4 +53,5 @@ dependencies {
     api lib.ARouterApi
     api lib.BaseRecyclerViewAdapterHelper
     api lib.SmartRefreshLayoutHeader
+    api lib.SmartSwipe
 }

@@ -1,4 +1,4 @@
-package com.suifeng.kotlin.base.swipback;
+package com.suifeng.kotlin.base.utils.other;
 
 import android.content.Context;
 import android.view.MotionEvent;

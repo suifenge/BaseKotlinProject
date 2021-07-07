@@ -2,12 +2,17 @@ package com.suifeng.kotlin.base.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.billy.android.swipe.SmartSwipe
+import com.billy.android.swipe.SmartSwipeWrapper
+import com.billy.android.swipe.SwipeConsumer
+import com.billy.android.swipe.consumer.ActivitySlidingBackConsumer
+import com.billy.android.swipe.listener.SwipeListener
 import com.suifeng.kotlin.base.R
 import com.suifeng.kotlin.base.mvvm.vm.BaseViewModel
 import com.suifeng.kotlin.base.mvvm.vm.SuperViewModelProvider
-import com.suifeng.kotlin.base.swipback.SwipeBackActivity
 import com.suifeng.kotlin.base.ui.AppManager
 import com.suifeng.kotlin.base.ui.activity.BaseActivity.TransitionMode.*
 import com.suifeng.kotlin.base.utils.statusbar.StatusBarUtil
@@ -25,7 +30,7 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
     //状态栏颜色
     private val statusBarColor: Int = 0,
     private val statusBarAlpha: Int = 0
-) : SwipeBackActivity(), View.OnClickListener {
+) : AppCompatActivity(), View.OnClickListener, SwipeListener {
 
     protected lateinit var binding: V
 
@@ -40,6 +45,7 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
                 BOTTOM       -> { overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out) }
                 SCALE        -> { overridePendingTransition(R.anim.scale_in, R.anim.scale_out) }
                 FADE         -> { overridePendingTransition(R.anim.fade_in, R.anim.fade_out) }
+                NONE         -> { overridePendingTransition(R.anim.anim_none, R.anim.anim_none) }
             }
         }
         super.onCreate(savedInstanceState)
@@ -92,6 +98,18 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
         }
     }
 
+    /**
+     * SmartSwipe有几种退出效果可以重写来实现想要的效果
+     * 百叶窗样式、开门样式、仿小米MIUI系统的贝塞尔曲线返回
+     */
+    open fun setSwipeBackEnable(enable: Boolean) {
+        if(!enable) return
+        SmartSwipe.wrap(this)
+            .addConsumer(ActivitySlidingBackConsumer(this))
+            .enableLeft()
+            .addListener(this)
+    }
+
     abstract fun init()
 
     override fun finish() {
@@ -105,6 +123,7 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
                 BOTTOM       -> { overridePendingTransition(R.anim.bottom_in, R.anim.bottom_out) }
                 SCALE        -> { overridePendingTransition(R.anim.scale_in, R.anim.scale_out) }
                 FADE         -> { overridePendingTransition(R.anim.fade_in, R.anim.fade_out) }
+                NONE         -> { overridePendingTransition(R.anim.anim_none, R.anim.anim_none) }
             }
         }
     }
@@ -120,7 +139,78 @@ abstract class BaseActivity<V: ViewDataBinding, VM: BaseViewModel>(
     open fun getOverridePendingTransitionMode() : TransitionMode? { return null }
 
     enum class TransitionMode {
-        LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE
+        LEFT, RIGHT, TOP, BOTTOM, SCALE, FADE, NONE
+    }
+
+    override fun onConsumerAttachedToWrapper(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?
+    ) {
+
+    }
+
+    override fun onConsumerDetachedFromWrapper(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?
+    ) {
+
+    }
+
+    override fun onSwipeStateChanged(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?,
+        state: Int,
+        direction: Int,
+        progress: Float
+    ) {
+
+    }
+
+    override fun onSwipeStart(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?,
+        direction: Int
+    ) {
+
+    }
+
+    override fun onSwipeProcess(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?,
+        direction: Int,
+        settling: Boolean,
+        progress: Float
+    ) {
+
+    }
+
+    override fun onSwipeRelease(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?,
+        direction: Int,
+        progress: Float,
+        xVelocity: Float,
+        yVelocity: Float
+    ) {
+
+    }
+
+    override fun onSwipeOpened(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?,
+        direction: Int
+    ) {
+        finish()
+        //右滑退出时让activity的动画消失
+        overridePendingTransition(R.anim.anim_none, R.anim.anim_none)
+    }
+
+    override fun onSwipeClosed(
+        wrapper: SmartSwipeWrapper?,
+        consumer: SwipeConsumer?,
+        direction: Int
+    ) {
+
     }
 
 }
